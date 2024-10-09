@@ -1,0 +1,323 @@
+---
+bibliography: book.bib
+csl: apa.csl
+editor_options: 
+  markdown: 
+    wrap: sentence
+    urlcolor: blue
+---
+
+```{r  global-options, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
+```
+
+# Interpretability & Explainability with Random Forest
+
+In the world of machine learning, interpretability and explainability are two therms commonly used to describe the leven of comprehension of an algorithm.
+The distinction between them lies in their focus and depth.
+We can say that interpretability focuses on understanding the inner workings of the models, while explainability focuses on explaining the decisions made.
+Define i f an algorithm is interpretable or explainable dipend on different factors as described below.
+ 
+
+**Model complexity** – When dealing with intricate models like Random Forest (with tens of variables and thousands of trees), up to deep neural networks, interpretability becomes challenging due to their complexity and the interplay among their components.
+In such scenarios, explainability proves to be a more practical approach, as it focuses on clarifying decisions rather than delving into the complexities of the algorithm.
+
+**Communication** – In terms of audience and purpose, interpretability primarily concerns machine learning specialists , whereas explainability targets end users seeking to grasp model decisions.
+Consequently, explainability necessitates a more straightforward and intuitive communication of information.
+
+While Random Forest (RF) is a powerful algorithm and often yield high accuracy, interpretability can be challenging due to its complex structure and the high number of tress.
+However, the following techniques can enhance the interpretability and explainability of RF models.
+
+-   **Interpretability** – A *surrogate model*, such as a single decision tree, can approximate the predictions of a more complex model like a RF, which is composed of thousands of decision trees.
+    The surrogate model is more interpretable and helps in understanding the general rules that RF tipically follows.
+
+-   **Explainability** – Examining *feature importance scores*, which measure the contribution of each variable to the model's predictions, allows us to identify the most influential variables in the model's decisions.
+    In addition, *partial dependence plots* enable us to visualize how changes in a variable influence the model's predictions, making this tool useful for interpreting the global effects of predictors across the entire dataset.
+
+## Aim of the present lab
+
+In this computing lab you will work with the outputs of RF resulting from the previous lab on landslides susceptibility map.
+
+-   Firstly, we will explore the relative importance of the predictor variables (feature importance scores) , and their relative probability of prediction success (partial dependence plots).
+    These are the core of explainability in RF.
+
+-   In the second part, we will apply a local version of RF (named "*Geographical Random Forest*") to analyse the spatial heterogeneity of the local variable importance.
+    This will help to deep our understanding of the influence of the predictor variable explored locally,
+
+## Computing lab: tools to comprehend RF
+
+### Re-load libraries and workspace
+
+If you have quit the workspace where you have run the RF model for landslide susceptibility mapping, you need to load it again in this new project.
+Loading the workspace refers to the action of restoring the saved state of R environment.
+When you save your workspace in R, it typically includes all the objects (such as variables, functions, data frames, etc.) that are currently present in your R session.
+Loading the workspace means to restore this saved state, bringing back all the previously saved objects into your current R session.
+
+```{r import-WS, echo = FALSE}
+
+# Load the workspace (all the data)
+load("data/RF/LSM_RF.RData")
+
+# Load the required libraries
+## See details from the LSM_RF project
+library(terra)
+library(foreign)
+library(readr) 
+library(dplyr) 
+library(pROC) 
+library(plotROC) 
+library(ggplot2)  
+library(classInt)
+library(randomForest)
+library(tidyr)
+library(RColorBrewer)
+(.packages())
+```
+
+### Surrogate model
+
+Although machine learning algorithms are often considered as a black box, with RF is possible to plot a sample tree (selected randomly) to analyse its structure and investigate how decisions have been made.
+
+```{r plot-tree, fig.show='hide'}
+
+library("party")
+
+x <- ctree(LS~., data=LS_train)
+plot(x, type="simple")
+```
+
+### Features importance score
+
+RF provides two scores allowing to assess the importance of each variables in the model: the Mean Decrease in Accuracy (MDA), and the mean decrease in Gini index.
+The MDA indicates how much the tree nodes that use a given variable enable reducing the mean-square errors evaluated on the Out-Of-Bag and across all the trees.
+The Gini index measures the probability of incorrectly classifying a randomly chosen element in a dataset if that element were classified based on the distribution of classes in a particular node.
+The relative importance of the predictor variables can be ranked based on the increasing values of both these scores: the higher the value, the more important the variable.
+
+```{r var-imp, results = FALSE}
+
+# Display the plot with the relative importance of each variable
+importance(RF_LS)
+varImpPlot(RF_LS)
+```
+
+### Partial dependence plot
+
+The Partial Dependence Plot (PDP) allows us to estimate, for each single variable, the relative probability of prediction success over different ranges of values.
+PDP provides a graphical depiction of the marginal effect of each variable on the class probability over different ranges of continuous or discrete values.
+Positive values are associated with the probability of occurrence of the phenomena (i.e., landslides presence), while negative vales indicate its absence.
+
+```{r par-plot}
+
+#Compute PDP for all the predictor variables 
+
+# Slope
+partialPlot(RF_LS, LS_train, x.var = slope, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Slope [Â°]", 
+            main = "", ylab = "PDP")
+
+# Elevation
+partialPlot(RF_LS, LS_train ,x.var = DEM, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Elevation [m]", 
+            main = "",ylab = "PDP")
+
+# Profile curvature
+partialPlot(RF_LS, LS_train, x.var = profCurv, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Profile curvature [1/m]", 
+            main = "", ylab = "PDP", xlim = c(-0.1,0.1))
+
+# Plan Curvature
+partialPlot(RF_LS, LS_train, x.var = planCurv, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Plan curvature [1/m]", 
+            main = "", ylab = "PDP", xlim = c(-0.1,0.1))
+
+# Distance to road
+partialPlot(RF_LS, LS_train, x.var = distRoad, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Distance to road [m]", 
+            main = "", ylab = "PDP")
+
+# Topographic wetness index
+partialPlot(RF_LS, LS_train, x.var = TWI, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "TWI [-]", 
+            main = "", ylab = "PDP")
+
+# Geology
+partialPlot(RF_LS, LS_train, x.var = geology, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Geology", 
+            main = "", ylab = "PDP")
+
+# Land cover
+partialPlot(RF_LS, LS_train, x.var = landCover, rug = TRUE, 
+            which.class = RF_LS$classes[2],xlab= "Land Cover",
+            main = "", ylab = "PDP")
+```
+
+# Local Random Forest
+
+Classical machine learning algorithms like Random Forest lack spatial calibration, hindering capturing the spatial heterogeneity in the relationship between a dependent and a set of independent variables.
+To account for spatial heterogeneity (i.e. non-stationarity) on the spatial patterns distribution of hazardous events modeled as function of geographical features we can use local models.
+Specifically, in the present work we explore the **local feature importance** of geographical independent predictor variables on the spatial distribution of landslides in canton Vaud (Switzerland).
+
+We introduce **Geographical Random Forest** (GRF), a spatial analysis method which uses a local version of RF algorithm [@georganos_forest_2022] .
+This is achieved by fitting a sub-model for each observation in space, taking into account the neighboring observations.
+The GRF can model the non-stationarity coupled with a non-linear model (RF), which, compared to liner models, tends not to overfit due to its bootstrapping nature.
+In addition RF is suited for datasets with numerous predictor variables.
+
+Essentially, GRF was designed to be a bridge between machine learning and geographical models, combining inferential and explanatory power.
+
+## Computing lab: GRF
+
+For the computation we introduce here the method proposed by @Georganos_forest_2022 and implemented in the R package `SpatialML` [@SpatialML]
+
+The function `grf` fitting a local version of the RF algorithm, has been implemented fro regression problem, so we need to transform our binary response variable (presence==1 / absence==0) to a numeric value which can assume a range of values from zero to one.
+
+```{r GRF-input, echo = FALSE}
+
+# Load SpatialML: it implements a spatial extension of the random forest algorithm 
+library (SpatialML)
+
+str(LS_input)
+
+# Add LS as numerical variable for RF regression 
+LS_train$LSregr = as.numeric(as.character(LS_train$LS))
+LS_test$LSregr = as.numeric(as.character(LS_test$LS))
+str(LS_train)
+str(LS_test)
+```
+
+```{r Run-GRF}
+
+Coords<-LS_train[,9:10] # define coordinates
+
+# Run GRF
+
+set.seed(123) # initialize 
+
+gwRF_LS<-grf(LSregr~distRoad+DEM+landCover+TWI+planCurv+profCurv+slope+geology,  LS_train, bw=40, mtry=3, kernel="adaptive",coords=Coords)
+
+saveRDS(gwRF_LS, "gwRF_LS.rds")
+```
+
+### Feature importance
+
+#### Global variable importance plot
+
+Based on the results of the GRF, we can plot of the variable importance ranking for illustrative purposes.
+Values came from "`Global ML Model Summary`" --\> "`Importance`"
+
+```{r Global-Var-Imp}
+
+# Create a data frame with variable names and importance values
+variable_importance <- data.frame (
+  Variable = c("distRoad", "DEM", "landCover", "TWI", "planCurv", "profCurv", "slope", "geology"),
+  Importance = c(181.18490, 114.32444,  34.23643, 101.51863,  84.81667, 125.93651, 297.74411,  39.22721 ) # Importance - Global ML
+)
+
+# Assign different colors to the top three important variables
+variable_importance$Color <- ifelse(variable_importance$Importance >= sort(variable_importance$Importance, decreasing = TRUE)[3], "orange", "skyblue")
+
+# Create a bar plot for variable importance with different colors for the top three variables
+ggplot(data = variable_importance, aes(x = Variable, y = Importance, fill = Color)) +
+  geom_bar(stat = "identity") +
+  scale_fill_identity() +
+  labs(title = "Variable Importance Plot", x = "Variable", y = "Importance") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
+
+```
+
+#### Local feature importance
+
+We can plot the local feature importance scores for the two variables that are globally most important, the slope and the distance to road, with the output values mapped over the geographic space.
+
+```{r Slope_Imp}
+
+# Create a data frame with the values of the local variables importance and the coordinates for each location
+gwRF_LS_var<-gwRF_LS$Local.Variable.Importance
+gwRF_LS_var_XY<-cbind(gwRF_LS_var,LS_train$x,LS_train$y ) # add coordinates
+colnames(gwRF_LS_var_XY)[9]<- "X" #rename column X-coordinate 
+colnames(gwRF_LS_var_XY)[10]<- "Y" #rename column Y-coordinate 
+str(gwRF_LS_var_XY) 
+
+library(sf) #for spatial data operations
+# Convert vector to sf (simple feature)
+Vaud<-vect("data/RF/Vaud_CH.shp")
+Vaud_sf<-st_as_sf(Vaud) 
+
+# Output predicted values are transformed to a vector
+pred.vect <- as.vector(gwRF_LS_var_XY$slope)
+
+library(classInt) #for classification
+
+brk<-(classIntervals(pred.vect, n=5, style = "fisher"))
+brkInt<-round(brk$brks, digits=2)
+print(brkInt)
+
+#natural breaks (fisher)
+
+ggplot() +
+    geom_point(data = gwRF_LS_var_XY, aes(x = X, y = Y, colour = slope), size = 1) +
+    scale_color_gradientn(colors = c("white", "orange","red", "blue"),  
+                       breaks = c(0.00, 0.40, 1.15, 2.11, 3.23, 4.91), 
+                       labels=c(0.00, 0.40, 1.15, 2.11, 3.23, 4.91)) +
+        labs( x = "X Coordinate", y = "Y Coordinate")+
+    ggtitle("Local average FI - Slope")+
+    geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
+```
+
+```{r distRoad-Imp}
+
+# Output predicted values are transformed to a vector
+pred.vect <- as.vector(gwRF_LS$Local.Variable.Importance$distRoad)
+ 
+brk<-(classIntervals(pred.vect, n=5, style = "fisher"))
+brkInt<-round(brk$brks, digits=2)
+print(brkInt) # print breaks
+
+#natural breaks (fisher)
+
+ggplot() +
+    geom_point(data = gwRF_LS_var_XY, aes(x = X, y = Y, colour = distRoad), size = 1) +
+    scale_color_gradientn(colors = c("white", "orange","red", "blue"), 
+                       breaks = c(0.00, 0.37, 1.02, 2.17, 3.58, 4.85), 
+                       labels=c(0.00, 0.37, 1.02, 2.17, 3.58, 4.85)) +
+    labs( x = "X Coordinate", y = "Y Coordinate")+
+    ggtitle("Local average FI - Distance to roads")+
+    geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
+```
+
+### Local R squared
+
+The Local R-squared value represents the strength of the correlations of the local model on the predictor variables and ranges from 0 to 1.
+
+```{r local-R2}
+
+Rsq<-gwRF_LS$LGofFit$LM_Rsq100
+Rsq_XY<-as.data.frame(cbind(Rsq,LS_train$x,LS_train$y)) # add coordinates
+colnames(Rsq_XY)[2]<- "X"
+colnames(Rsq_XY)[3]<- "Y"
+str(Rsq_XY)
+
+ggplot () +
+  geom_point(data = Rsq_XY, aes(x = X, y = Y, colour = Rsq), size = 1)+ 
+  scale_color_gradientn(colors = c("white", "yellow","red", "blue"))+
+  labs(title = "Rsq", x = "X Coordinate", y = "Y Coordinate")+
+  ggtitle("Local R2")+
+  geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
+```
+
+## Conclusions and further analyses
+
+In the present exercise GRF has been used as a purely exploratory tool to estimate the spatial variation of the relationship between landslides in Canton Vaud (Switzerland) and the predictor variables.
+It allowed to elaborate maps based on the local average importance of the most highly correlated features and to visualize the local fitting performance (R2 local value) into a map.
+
+To ensure that everything is perfectly clear, we propose you to answer the following questions:
+
+1.  Among the following algorithms evaluate them in therms of their interpretability and explainability: Support Vector Machines , linear regression, Deep Learning Models, Decision Trees, K-Nearest Neighbors, Neural Networks, Random Forests, logistic regression.
+
+2.  Which are the three most important variables of your model (based on the MDA)?
+
+3.  What is the slope value (or range of values) that gives the highest probability of landslides occurrence?
+    And for the geology, which are the most important classes?
+
+4.  Evaluate the spatial variation of the relationship between landslides and slope / distance to roads in your study area by visually inspecting the local average importance of these features.
+
+5.  You can replicate this code (some chiuncks of it) to evaluate the local average importance of the third most important variable, as well as to map the local mean squared error.
