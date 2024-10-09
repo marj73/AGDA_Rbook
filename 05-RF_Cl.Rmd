@@ -13,7 +13,7 @@ output: pdf_document
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Predictive Mapping of Natural Hazards Using Random Forest
+# Predictive Mapping of Natural Hazards Using Random Forest {#rf-cl}
 
 Random Forest (RF) is a robust and widely-used machine learning algorithm particularly suited for predictive mapping in the context of natural hazards and susceptibility assessments.
 It operates by constructing multiple decision trees during training, and then aggregating their predictions to improve accuracy and generalizability [@breiman_random_2001].
@@ -424,8 +424,3 @@ To ensure that everything is perfectly clear, we propose you to **answer the fol
 3)  Which is the values of the OOB estimate error rate of your model?
     Which parameters you can change to try to reduce it?
     Be brave and do it (i.e., change the values for *ntree* and *mtry,* than analyse which values for the AUC you obtain and which model perform better.
-
-## Further reading on this topic
-
-The research framework that inspired this computing lab refers to a pioneering study in susceptibility mapping for wildfire events by [@tonini_machine_2020] and further developed for the assessment of variable importance by [@trucchia_machine-learning_2022].
-Analyses have been adapted to the case study of landslides.

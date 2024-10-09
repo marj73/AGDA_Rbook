@@ -13,7 +13,7 @@ editor_options:
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# DBSCAN for 3D features detection in geosciences
+# DBSCAN for 3D features detection in geosciences {#dbscan}
 
 A terrestrial laser scanner (TLS) is a sophisticated surveying tool designed for capturing highly accurate and dense 3D point cloud data of physical environments.
 Sequential acquisition are used to detect and quantify surface changes.

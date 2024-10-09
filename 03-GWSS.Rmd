@@ -14,7 +14,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 
 ```
 
-# Geographically Weighted Summary Statistics for Geosciences
+# Geographically Weighted Summary Statistics for Geosciences {#gwss}
 
 Geographically Weighted Summary Statistics (GWSS) represent an advanced analytical approach in geosciences, allowing researchers to explore spatial variations in data across a geographical landscape.
 Unlike traditional summary statistics that provide a single, overall summary measure – like mean, median, or standard deviation – for the entire dataset (i.e., globally), GWSS techniques calculate these measures locally, reflecting the unique characteristics and variations at different spatial locations.
@@ -246,7 +246,7 @@ This approach allowed us to explore how the average burned area vary locally thr
 
 The global Geographically Weighted (GW) mean informs us about the local average value of the burned area, based of the neighboring events occurred in a given period.
 Similarly, the GW standard deviation to see the extent to which the size of the burned area spread around this mean.
-Finally, the GW skewness measures the symmetry of distribution: a positively skewed distribution means that there is a high number of obserations with mean value lower that the median; and the contrary for a negatively skewed distribution.
+Finally, the GW skewness measures the symmetry of distribution: a positively skewed distribution means that there is a high number of observations with mean value lower that the median; and the contrary for a negatively skewed distribution.
 
 To ensure that everything is perfectly clear, we propose you to answer the following questions.
 You can find the correct responses in the reference paper [@tonini_evolution_2017].
