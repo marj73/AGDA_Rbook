@@ -11,7 +11,7 @@ editor_options:
 
 
 
-# Basic operation with geodata in R
+# Basic operation with geodata in R 
 
 ## Introduction
 
@@ -408,7 +408,7 @@ install.packages("viridis", repos="http://cran.us.r-project.org")
 ## package 'viridis' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpqsZyvq\downloaded_packages
+## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpacTBQu\downloaded_packages
 ```
 
 ```r

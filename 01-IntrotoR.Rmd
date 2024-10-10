@@ -13,7 +13,7 @@ editor_options:
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Introduction to R {#intro-r}
+# Introduction to R
 
 ## R Language
 

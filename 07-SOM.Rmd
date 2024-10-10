@@ -11,7 +11,7 @@ editor_options:
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach {#som}
+# Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach
 
 Urban expansion across Europe has accelerated in recent decades, significantly blurring the distinctions between urban and rural landscapes.
 The growing complexity and constant evolution of territorial dynamics require timely urban-rural typologies that systematically classify areas along the continuum from distinctly urban to distinctly rural.

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 
 ```
 
-# Geographically Weighted Summary Statistics for Geosciences {#gwss}
+# Geographically Weighted Summary Statistics for Geosciences 
 
 Geographically Weighted Summary Statistics (GWSS) represent an advanced analytical approach in geosciences, allowing researchers to explore spatial variations in data across a geographical landscape.
 Unlike traditional summary statistics that provide a single, overall summary measure – like mean, median, or standard deviation – for the entire dataset (i.e., globally), GWSS techniques calculate these measures locally, reflecting the unique characteristics and variations at different spatial locations.

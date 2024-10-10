@@ -9,13 +9,13 @@ editor_options:
 
 
 
-# Interpretability & Explainability with Random Forest
+# Interpretability & Explainability with Random Forest 
 
-In the world of machine learning, interpretability and explainability are two therms commonly used to describe the leven of comprehension of an algorithm.
+In the world of machine learning, interpretability and explainability are two therms commonly used to describe the extent to which an algorithm's behavior can be understood.
 The distinction between them lies in their focus and depth.
 We can say that interpretability focuses on understanding the inner workings of the models, while explainability focuses on explaining the decisions made.
-Define i f an algorithm is interpretable or explainable dipend on different factors as described below.
- 
+Define if an algorithm is interpretable or explainable depend on different factors as described below.
+
 
 **Model complexity** – When dealing with intricate models like Random Forest (with tens of variables and thousands of trees), up to deep neural networks, interpretability becomes challenging due to their complexity and the interplay among their components.
 In such scenarios, explainability proves to be a more practical approach, as it focuses on clarifying decisions rather than delving into the complexities of the algorithm.
@@ -42,7 +42,7 @@ In this computing lab you will work with the outputs of RF resulting from the pr
 -   In the second part, we will apply a local version of RF (named "*Geographical Random Forest*") to analyse the spatial heterogeneity of the local variable importance.
     This will help to deep our understanding of the influence of the predictor variable explored locally,
 
-## Computing lab: tools to comprehend RF
+## Computing lab: Understanding Random Forest Models
 
 ### Re-load libraries and workspace
 
@@ -168,7 +168,7 @@ partialPlot(RF_LS, LS_train, x.var = landCover, rug = TRUE,
 
 <img src="06-Exp_RF_files/figure-html/par-plot-8.png" width="672" style="display: block; margin: auto;" />
 
-# Local Random Forest
+## Local feature importance
 
 Classical machine learning algorithms like Random Forest lack spatial calibration, hindering capturing the spatial heterogeneity in the relationship between a dependent and a set of independent variables.
 To account for spatial heterogeneity (i.e. non-stationarity) on the spatial patterns distribution of hazardous events modeled as function of geographical features we can use local models.
@@ -181,7 +181,7 @@ In addition RF is suited for datasets with numerous predictor variables.
 
 Essentially, GRF was designed to be a bridge between machine learning and geographical models, combining inferential and explanatory power.
 
-## Computing lab: GRF
+## Computing lab: Geographical Random Forest
 
 For the computation we introduce here the method proposed by @Georganos_forest_2022 and implemented in the R package `SpatialML` [@SpatialML]
 
@@ -289,9 +289,7 @@ gwRF_LS<-grf(LSregr~distRoad+DEM+landCover+TWI+planCurv+profCurv+slope+geology, 
 saveRDS(gwRF_LS, "gwRF_LS.rds")
 ```
 
-### Feature importance
-
-#### Global variable importance plot
+### Global variable importance plot
 
 Based on the results of the GRF, we can plot of the variable importance ranking for illustrative purposes.
 Values came from "`Global ML Model Summary`" --\> "`Importance`"
@@ -317,9 +315,9 @@ ggplot(data = variable_importance, aes(x = Variable, y = Importance, fill = Colo
 
 <img src="06-Exp_RF_files/figure-html/Global-Var-Imp-1.png" width="672" style="display: block; margin: auto;" />
 
-#### Local feature importance
+### Local feature importance mapping
 
-We can plot the local feature importance scores for the two variables that are globally most important, the slope and the distance to road, with the output values mapped over the geographic space.
+We can display the local feature importance scores for the two variables that are globally most important, the slope and the distance to road, with the output values mapped over the geographic space.
 
 
 ```r

@@ -11,10 +11,10 @@ editor_options:
 
 
 
-# Spatio-Temporal Cluster Analysis of Geoenvironmental Processes
+# Spatio-Temporal Cluster Analysis of Geoenvironmental Processes 
 
 Spatio-temporal cluster analysis (ST clustering) is a powerful tool used to identify patterns and relationships in data that vary across both space and time.
-In the context of geoenvironmental processes, this type of analysis can helps in understanding how environmental phenomena — such as wildfires, landslides, or flood events — are distributed geographically and how they evolve over time.
+In the context of geo-environmental processes, this type of analysis can helps in understanding how environmental phenomena — such as wildfires, landslides, or flood events — are distributed geographically and how they evolve over time.
 By detecting clusters, researchers can uncover hotspots of activity, assess trends, and identify potential triggers or influencing factors, leading to more informed decision-making and targeted interventions in environmental management.
 
 ## ST clustering for fire management
@@ -256,7 +256,7 @@ install.packages('patchwork', repos = "http://cran.us.r-project.org")
 ## package 'patchwork' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpyMdiCO\downloaded_packages
+## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpAdaHgy\downloaded_packages
 ```
 
 ```r

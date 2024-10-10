@@ -11,7 +11,7 @@ editor_options:
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Interpretability & Explainability with Random Forest {#exp-rf}
+# Interpretability & Explainability with Random Forest 
 
 In the world of machine learning, interpretability and explainability are two therms commonly used to describe the extent to which an algorithm's behavior can be understood.
 The distinction between them lies in their focus and depth.
