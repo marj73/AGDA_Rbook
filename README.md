@@ -1,6 +1,6 @@
 # AGDA_Rbook
 
-The primary focus of this eBook is the application of Data Science methodologies to analyze and understand Earth's surface environmental processes.
+The primary focus of this eBook is the application of Advanced Geospatial Data Analysis approaches to analyze and understand Earth's surface environmental processes.
 The scientific approaches in this emerging field (spanning statistics, mathematics, geomatics, and computer science) are often challenging to master.
 Thus, while maintaining a rigorous emphasis on mathematical and statistical formalism, this eBook prioritizes practical applications in the domain of Geosciences.
 
