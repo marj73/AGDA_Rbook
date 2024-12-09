@@ -1,23 +1,19 @@
 ---
+csl: "apa.csl"
+link-citations: true
 bibliography: book.bib
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
 ---
 
 ```{r  global-options, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Interpretability & Explainability with Random Forest 
+# Interpretability & Explainability with Random Forest {#local-rf}
 
 In the world of machine learning, interpretability and explainability are two therms commonly used to describe the extent to which an algorithm's behavior can be understood.
 The distinction between them lies in their focus and depth.
 We can say that interpretability focuses on understanding the inner workings of the models, while explainability focuses on explaining the decisions made.
 Define if an algorithm is interpretable or explainable depend on different factors as described below.
-
 
 **Model complexity** – When dealing with intricate models like Random Forest (with tens of variables and thousands of trees), up to deep neural networks, interpretability becomes challenging due to their complexity and the interplay among their components.
 In such scenarios, explainability proves to be a more practical approach, as it focuses on clarifying decisions rather than delving into the complexities of the algorithm.
@@ -29,7 +25,7 @@ While Random Forest (RF) is a powerful algorithm and often yield high accuracy, 
 However, the following techniques can enhance the interpretability and explainability of RF models.
 
 -   **Interpretability** – A *surrogate model*, such as a single decision tree, can approximate the predictions of a more complex model like a RF, which is composed of thousands of decision trees.
-    The surrogate model is more interpretable and helps in understanding the general rules that RF tipically follows.
+    The surrogate model is more interpretable and helps in understanding the general rules that RF typically follows.
 
 -   **Explainability** – Examining *feature importance scores*, which measure the contribution of each variable to the model's predictions, allows us to identify the most influential variables in the model's decisions.
     In addition, *partial dependence plots* enable us to visualize how changes in a variable influence the model's predictions, making this tool useful for interpreting the global effects of predictors across the entire dataset.
@@ -157,7 +153,7 @@ Classical machine learning algorithms like Random Forest lack spatial calibratio
 To account for spatial heterogeneity (i.e. non-stationarity) on the spatial patterns distribution of hazardous events modeled as function of geographical features we can use local models.
 Specifically, in the present work we explore the **local feature importance** of geographical independent predictor variables on the spatial distribution of landslides in canton Vaud (Switzerland).
 
-We introduce **Geographical Random Forest** (GRF), a spatial analysis method which uses a local version of RF algorithm [@georganos_forest_2022] .
+We introduce **Geographical Random Forest** (GRF), a spatial analysis method which uses a local version of RF algorithm [@Georganos_forest_2022] .
 This is achieved by fitting a sub-model for each observation in space, taking into account the neighboring observations.
 The GRF can model the non-stationarity coupled with a non-linear model (RF), which, compared to liner models, tends not to overfit due to its bootstrapping nature.
 In addition RF is suited for datasets with numerous predictor variables.
@@ -318,4 +314,4 @@ To ensure that everything is perfectly clear, we propose you to answer the follo
 
 4.  Evaluate the spatial variation of the relationship between landslides and slope / distance to roads in your study area by visually inspecting the local average importance of these features.
 
-5.  You can replicate this code (some chiuncks of it) to evaluate the local average importance of the third most important variable, as well as to map the local mean squared error.
+5.  You can replicate this code (some chuncks of it) to evaluate the local average importance of the third most important variable, as well as to map the local mean squared error.

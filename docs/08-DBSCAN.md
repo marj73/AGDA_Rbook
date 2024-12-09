@@ -1,17 +1,12 @@
 ---
-bibliography: book.bib
-link-citations: true
-biblio-style: apalike
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
+output:
+
+  pdf_document: default
+  html_document: default
 ---
 
 
-
-# DBSCAN for 3D features detection in geosciences
+# DBSCAN for 3D features detection in geosciences {#dbscan}
 
 A terrestrial laser scanner (TLS) is a sophisticated surveying tool designed for capturing highly accurate and dense 3D point cloud data of physical environments.
 Sequential acquisition are used to detect and quantify surface changes.
@@ -26,10 +21,14 @@ Thus, for change detection proposes (i.e. the determination of topographic chang
 In this practical computing lab we introduce a semi-automated method developed for isolating and identifying features of topographic change (i.e., apparent changes caused by surface displacements and indicating erosion or deposition) directly from point cloud data using a Density-Based Spatial Clustering of Applications with Noise (DBSCAN).
 This methodology was developed in @micheletti_geomorphological_2017 for a very active rock glacier front located in the Swiss Alps: the Tsarmine rock glacier.
 
-<div class="figure" style="text-align: center">
-<img src="images/Tsarmine2.jpg" alt="The Tsarmine rock glacier, Hérens Valley, in the Western Swiss Alps. Source: Micheletti et al, 2016 \label{Tsarmine}" width="50%" height="70%" />
-<p class="caption">(\#fig:jpg)The Tsarmine rock glacier, Hérens Valley, in the Western Swiss Alps. Source: Micheletti et al, 2016 \label{Tsarmine}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=0.7\textheight]{images/Tsarmine2} 
+
+}
+
+\caption{The Tsarmine rock glacier, Hérens Valley, in the Western Swiss Alps. Source: Micheletti et al, 2016 \label{Tsarmine}}(\#fig:jpg)
+\end{figure}
 
 ## The overall methodology
 
@@ -58,10 +57,14 @@ The central point of each cluster is called "core-point".
 Since some points can be density-reachable by more than one core-point, they can belong to more than one cluster.
 In this case clusters are blended together to form a unique feature of arbitrary shape (\autoref{dbscan}c).
 
-<div class="figure" style="text-align: center">
-<img src="images/parameters.png" alt="Parameters in DBSCAN to form a cluster \label{dbscan}" width="163" />
-<p class="caption">(\#fig:fig2)Parameters in DBSCAN to form a cluster \label{dbscan}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=3.4in]{images/parameters} 
+
+}
+
+\caption{Parameters in DBSCAN to form a cluster \label{dbscan}}(\#fig:fig2)
+\end{figure}
 
 ### Field campaign
 
@@ -87,7 +90,7 @@ Fist you have to load the following libraries:
 -   *RColorBrewer*: provides color schemes for mapping.
 
 
-```r
+``` r
 library("dbscan")
 library("rgl")
 library("plot3Drgl")
@@ -104,7 +107,7 @@ The noise-points are removed using a threshold of 30 cm.
 Finally we will plot the 3D-points cloud filtered dataset using the displacement distance as attribute to display the map.
 
 
-```r
+``` r
 # Import point cloud dataset (ptc)
 # 1 year displacement TLS campaigns; data masked over the active front only.
 ptc <- read.table("data/DBSCAN/TsarmineRG_230914_frontonly_XYZ_dist_ref_220915.txt", header=FALSE, sep="")
@@ -118,10 +121,12 @@ summary(ptc$d)
 hist(log10(ptc$d))
 ```
 
-<img src="08-DBSCAN_files/figure-html/import-data-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+\begin{center}\includegraphics{08-DBSCAN_files/figure-latex/import-data-1} \end{center}
+
+
+``` r
 # Create a subset: removing noise-points (d>30cm).
 ptc30 <- subset(ptc, d>=0.3)
 
@@ -131,7 +136,7 @@ summary(ptc30$d)
 ```
 
 
-```r
+``` r
 # Plot-3D: display 3D plot (X,Y,Z) with class intervals based on the distance d.
 
 # Create a class interval (int) based on natural breaks:
@@ -142,7 +147,9 @@ int <- classIntervals(ptc30$d, n=5, style="fisher")
 scatter3D(ptc30$X, ptc30$Y, ptc30$Z, colvar =ptc30$d, breaks=cut.vals, cex=0.5)
 ```
 
-<img src="08-DBSCAN_files/figure-html/points-clouds-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{08-DBSCAN_files/figure-latex/points-clouds-1} \end{center}
 
 ### Compute DBSCAN
 
@@ -155,17 +162,19 @@ In the following, the minimum number of points allowing to form a cluster is fix
 For the computation we introduce here the R package `dbscan` [@DBSCAN_library]
 
 
-```r
+``` r
 # Plot the k-NN distance graph (with k=10)
 kNNdistplot(ptc30[,-4], k = 10)
 ```
 
-<img src="08-DBSCAN_files/figure-html/k-NN-graph-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{08-DBSCAN_files/figure-latex/k-NN-graph-1} \end{center}
 
 Once the best $MinPts$ and $eps$ parameter have been selected, the DBSCAN function can be run.
 
 
-```r
+``` r
 # Eps=1m (~3xsigma) ; MinPts=10
 cl30<-dbscan(ptc30, 1, minPts=10)
 
@@ -176,7 +185,7 @@ sum(cl30$cluster==0)
 ```
 
 
-```r
+``` r
 # Plot only the detected clusters.
 
 # Join the data:
@@ -189,9 +198,11 @@ cl30_df<-as.data.frame(subset(cl30, cl30$cluster>=1))
 plot(cl30_df$X, cl30_df$Y, col=cl30_df$cluster, pch=20)
 ```
 
-<img src="08-DBSCAN_files/figure-html/plot-clusters-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{08-DBSCAN_files/figure-latex/plot-clusters-1} \end{center}
+
+``` r
 # Animated 3D-plot:
 #plot3d(cl30_df, col=cl30_df$cluster, pch=20)
 ```
@@ -199,7 +210,7 @@ plot(cl30_df$X, cl30_df$Y, col=cl30_df$cluster, pch=20)
 Finally you can export the result as a \*.txt file and import it in a GIS system for further analyses, such as to determine the volumes of loss or gain of material.
 
 
-```r
+``` r
 write.table(cl30_df, file="cls30_1_10.txt", sep="\t")
 ```
 

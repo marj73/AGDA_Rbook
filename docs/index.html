@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Advanced Geospatial Data Analysis with R – Applications in Geosciences</title>
   <meta name="description" content="Advanced Geospatial Data Analysis with R – Applications in Geosciences" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Advanced Geospatial Data Analysis with R – Applications in Geosciences" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dr. Marj Tonini, Haokun Liu" />
 
 
-<meta name="date" content="2024-10-10" />
+<meta name="date" content="2024-09-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="next" href="intro.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -128,6 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -173,158 +174,158 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#my-journey-of-learning-integrating-geospatial-data-analysis-with-data-science"><i class="fa fa-check"></i>My Journey of Learning: Integrating Geospatial Data Analysis with Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-language"><i class="fa fa-check"></i><b>1.1</b> R Language</a>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r-language"><i class="fa fa-check"></i><b>1.1</b> R Language</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-packages"><i class="fa fa-check"></i><b>1.1.1</b> R Packages</a></li>
-<li class="chapter" data-level="1.1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#some-tips"><i class="fa fa-check"></i><b>1.1.2</b> Some tips</a></li>
-<li class="chapter" data-level="1.1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-commands-online-resources"><i class="fa fa-check"></i><b>1.1.3</b> R Commands (online resources)</a></li>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#r-packages"><i class="fa fa-check"></i><b>1.1.1</b> R Packages</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#some-tips"><i class="fa fa-check"></i><b>1.1.2</b> Some tips</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#r-commands-online-resources"><i class="fa fa-check"></i><b>1.1.3</b> R Commands (online resources)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-markdown"><i class="fa fa-check"></i><b>1.2</b> R Markdown</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-type-in-computational-analysis"><i class="fa fa-check"></i><b>1.3</b> Data type in computational analysis</a>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-markdown"><i class="fa fa-check"></i><b>1.2</b> R Markdown</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#data-type-in-computational-analysis"><i class="fa fa-check"></i><b>1.3</b> Data type in computational analysis</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variables"><i class="fa fa-check"></i><b>1.3.1</b> Variables</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structure-in-r"><i class="fa fa-check"></i><b>1.3.2</b> Data structure in R</a></li>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.3.1</b> Variables</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#data-structure-in-r"><i class="fa fa-check"></i><b>1.3.2</b> Data structure in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html"><i class="fa fa-check"></i><b>2</b> Basic operation with geodata in R</a>
+<li class="chapter" data-level="2" data-path="geodata.html"><a href="geodata.html"><i class="fa fa-check"></i><b>2</b> Basic operations with geodata in R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
-<li class="chapter" data-level="2.2" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#plotting-vector-dataset"><i class="fa fa-check"></i><b>2.2</b> Plotting vector dataset</a>
+<li class="chapter" data-level="2.1" data-path="geodata.html"><a href="geodata.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="geodata.html"><a href="geodata.html#plotting-vector-dataset"><i class="fa fa-check"></i><b>2.2</b> Plotting vector dataset</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#package-sf-for-vector-dataset"><i class="fa fa-check"></i><b>2.2.1</b> Package <strong><em>sf</em></strong> for vector dataset</a></li>
-<li class="chapter" data-level="2.2.2" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#plot-vector-features"><i class="fa fa-check"></i><b>2.2.2</b> Plot vector features</a></li>
+<li class="chapter" data-level="2.2.1" data-path="geodata.html"><a href="geodata.html#package-sf-for-vector-dataset"><i class="fa fa-check"></i><b>2.2.1</b> Package <strong><em>sf</em></strong> for vector dataset</a></li>
+<li class="chapter" data-level="2.2.2" data-path="geodata.html"><a href="geodata.html#plot-vector-features"><i class="fa fa-check"></i><b>2.2.2</b> Plot vector features</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#plotting-raster-dataset"><i class="fa fa-check"></i><b>2.3</b> Plotting raster dataset</a>
+<li class="chapter" data-level="2.3" data-path="geodata.html"><a href="geodata.html#plotting-raster-dataset"><i class="fa fa-check"></i><b>2.3</b> Plotting raster dataset</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#terra-package-and-raster-dataset"><i class="fa fa-check"></i><b>2.3.1</b> Terra package and raster dataset</a></li>
-<li class="chapter" data-level="2.3.2" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#plot-raster-features"><i class="fa fa-check"></i><b>2.3.2</b> Plot raster features</a></li>
+<li class="chapter" data-level="2.3.1" data-path="geodata.html"><a href="geodata.html#terra-package-and-raster-dataset"><i class="fa fa-check"></i><b>2.3.1</b> Terra package and raster dataset</a></li>
+<li class="chapter" data-level="2.3.2" data-path="geodata.html"><a href="geodata.html#plot-raster-features"><i class="fa fa-check"></i><b>2.3.2</b> Plot raster features</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#geodata-manipulation"><i class="fa fa-check"></i><b>2.4</b> Geodata manipulation</a>
+<li class="chapter" data-level="2.4" data-path="geodata.html"><a href="geodata.html#geodata-manipulation"><i class="fa fa-check"></i><b>2.4</b> Geodata manipulation</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#manipulate-tabular-datasets"><i class="fa fa-check"></i><b>2.4.1</b> Manipulate tabular datasets</a></li>
-<li class="chapter" data-level="2.4.2" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#pipes-chaining-of-multiple-operations"><i class="fa fa-check"></i><b>2.4.2</b> Pipes: chaining of multiple operations</a></li>
-<li class="chapter" data-level="2.4.3" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#join-table"><i class="fa fa-check"></i><b>2.4.3</b> Join table</a></li>
-<li class="chapter" data-level="2.4.4" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#mapping-with-ggplot2"><i class="fa fa-check"></i><b>2.4.4</b> Mapping with ggplot2</a></li>
-<li class="chapter" data-level="2.4.5" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#cropping-ratser"><i class="fa fa-check"></i><b>2.4.5</b> Cropping ratser</a></li>
-<li class="chapter" data-level="2.4.6" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#display-the-categorical-variables-of-a-raster"><i class="fa fa-check"></i><b>2.4.6</b> Display the categorical variables of a raster</a></li>
+<li class="chapter" data-level="2.4.1" data-path="geodata.html"><a href="geodata.html#manipulate-tabular-datasets"><i class="fa fa-check"></i><b>2.4.1</b> Manipulate tabular datasets</a></li>
+<li class="chapter" data-level="2.4.2" data-path="geodata.html"><a href="geodata.html#pipes-chaining-of-multiple-operations"><i class="fa fa-check"></i><b>2.4.2</b> Pipes: chaining of multiple operations</a></li>
+<li class="chapter" data-level="2.4.3" data-path="geodata.html"><a href="geodata.html#join-table"><i class="fa fa-check"></i><b>2.4.3</b> Join table</a></li>
+<li class="chapter" data-level="2.4.4" data-path="geodata.html"><a href="geodata.html#mapping-with-ggplot2"><i class="fa fa-check"></i><b>2.4.4</b> Mapping with ggplot2</a></li>
+<li class="chapter" data-level="2.4.5" data-path="geodata.html"><a href="geodata.html#cropping-ratser"><i class="fa fa-check"></i><b>2.4.5</b> Cropping ratser</a></li>
+<li class="chapter" data-level="2.4.6" data-path="geodata.html"><a href="geodata.html#display-the-categorical-variables-of-a-raster"><i class="fa fa-check"></i><b>2.4.6</b> Display the categorical variables of a raster</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="basic-operation-with-geodata-in-r.html"><a href="basic-operation-with-geodata-in-r.html#further-reading"><i class="fa fa-check"></i><b>2.5</b> Further Reading</a></li>
+<li class="chapter" data-level="2.5" data-path="geodata.html"><a href="geodata.html#further-reading"><i class="fa fa-check"></i><b>2.5</b> Further Reading</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html"><i class="fa fa-check"></i><b>3</b> Geographically Weighted Summary Statistics for Geosciences</a>
+<li class="chapter" data-level="3" data-path="gwss.html"><a href="gwss.html"><i class="fa fa-check"></i><b>3</b> Geographically Weighted Summary Statistics for Geosciences</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#gwss-for-natural-hazards-assessment"><i class="fa fa-check"></i><b>3.1</b> GWSS for natural hazards assessment</a>
+<li class="chapter" data-level="3.1" data-path="gwss.html"><a href="gwss.html#gwss-for-natural-hazards-assessment"><i class="fa fa-check"></i><b>3.1</b> GWSS for natural hazards assessment</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#the-overall-methodology"><i class="fa fa-check"></i><b>3.1.1</b> The overall methodology</a></li>
-<li class="chapter" data-level="3.1.2" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#forest-fires-dataset"><i class="fa fa-check"></i><b>3.1.2</b> Forest fires dataset</a></li>
+<li class="chapter" data-level="3.1.1" data-path="gwss.html"><a href="gwss.html#the-overall-methodology"><i class="fa fa-check"></i><b>3.1.1</b> The overall methodology</a></li>
+<li class="chapter" data-level="3.1.2" data-path="gwss.html"><a href="gwss.html#forest-fires-dataset"><i class="fa fa-check"></i><b>3.1.2</b> Forest fires dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#computing-lab-gwss"><i class="fa fa-check"></i><b>3.2</b> Computing lab: GWSS</a>
+<li class="chapter" data-level="3.2" data-path="gwss.html"><a href="gwss.html#computing-lab-gwss"><i class="fa fa-check"></i><b>3.2</b> Computing lab: GWSS</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#load-the-libraries"><i class="fa fa-check"></i><b>3.2.1</b> Load the libraries</a></li>
-<li class="chapter" data-level="3.2.2" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#import-the-forest-fire-dataset"><i class="fa fa-check"></i><b>3.2.2</b> Import the forest fire dataset</a></li>
-<li class="chapter" data-level="3.2.3" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#forest-fires-spatial-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Forest fires spatial distribution</a></li>
-<li class="chapter" data-level="3.2.4" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#compute-the-gwss"><i class="fa fa-check"></i><b>3.2.4</b> Compute the GWSS</a></li>
-<li class="chapter" data-level="3.2.5" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#look-at-the-results"><i class="fa fa-check"></i><b>3.2.5</b> Look at the results</a></li>
-<li class="chapter" data-level="3.2.6" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#gwss-maps"><i class="fa fa-check"></i><b>3.2.6</b> GWSS maps</a></li>
+<li class="chapter" data-level="3.2.1" data-path="gwss.html"><a href="gwss.html#load-the-libraries"><i class="fa fa-check"></i><b>3.2.1</b> Load the libraries</a></li>
+<li class="chapter" data-level="3.2.2" data-path="gwss.html"><a href="gwss.html#import-the-forest-fire-dataset"><i class="fa fa-check"></i><b>3.2.2</b> Import the forest fire dataset</a></li>
+<li class="chapter" data-level="3.2.3" data-path="gwss.html"><a href="gwss.html#forest-fires-spatial-distribution"><i class="fa fa-check"></i><b>3.2.3</b> Forest fires spatial distribution</a></li>
+<li class="chapter" data-level="3.2.4" data-path="gwss.html"><a href="gwss.html#compute-the-gwss"><i class="fa fa-check"></i><b>3.2.4</b> Compute the GWSS</a></li>
+<li class="chapter" data-level="3.2.5" data-path="gwss.html"><a href="gwss.html#look-at-the-results"><i class="fa fa-check"></i><b>3.2.5</b> Look at the results</a></li>
+<li class="chapter" data-level="3.2.6" data-path="gwss.html"><a href="gwss.html#gwss-maps"><i class="fa fa-check"></i><b>3.2.6</b> GWSS maps</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="geographically-weighted-summary-statistics-for-geosciences.html"><a href="geographically-weighted-summary-statistics-for-geosciences.html#conclusions-and-further-analyses"><i class="fa fa-check"></i><b>3.3</b> Conclusions and further analyses</a></li>
+<li class="chapter" data-level="3.3" data-path="gwss.html"><a href="gwss.html#conclusions-and-further-analyses"><i class="fa fa-check"></i><b>3.3</b> Conclusions and further analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><i class="fa fa-check"></i><b>4</b> Spatio-Temporal Cluster Analysis of Geoenvironmental Processes</a>
+<li class="chapter" data-level="4" data-path="kde.html"><a href="kde.html"><i class="fa fa-check"></i><b>4</b> Spatio-Temporal Cluster Analysis of GeoEnvironmental Processes</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#st-clustering-for-fire-management"><i class="fa fa-check"></i><b>4.1</b> ST clustering for fire management</a></li>
-<li class="chapter" data-level="4.2" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#clustering-methods"><i class="fa fa-check"></i><b>4.2</b> Clustering methods</a>
+<li class="chapter" data-level="4.1" data-path="kde.html"><a href="kde.html#st-clustering-for-fire-management"><i class="fa fa-check"></i><b>4.1</b> ST clustering for fire management</a></li>
+<li class="chapter" data-level="4.2" data-path="kde.html"><a href="kde.html#clustering-methods"><i class="fa fa-check"></i><b>4.2</b> Clustering methods</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#ripleys-k-function"><i class="fa fa-check"></i><b>4.2.1</b> Ripley’s K-function</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#kernel-density-estimator"><i class="fa fa-check"></i><b>4.2.2</b> Kernel density estimator</a></li>
+<li class="chapter" data-level="4.2.1" data-path="kde.html"><a href="kde.html#ripleys-k-function"><i class="fa fa-check"></i><b>4.2.1</b> Ripley’s K-function</a></li>
+<li class="chapter" data-level="4.2.2" data-path="kde.html"><a href="kde.html#kernel-density-estimator"><i class="fa fa-check"></i><b>4.2.2</b> Kernel density estimator</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#computing-lab-spatio-temporal-clustering"><i class="fa fa-check"></i><b>4.3</b> Computing lab: spatio-temporal clustering</a>
+<li class="chapter" data-level="4.3" data-path="kde.html"><a href="kde.html#computing-lab-st-clustering"><i class="fa fa-check"></i><b>4.3</b> Computing lab: ST clustering</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#load-the-libraries-1"><i class="fa fa-check"></i><b>4.3.1</b> Load the libraries</a></li>
-<li class="chapter" data-level="4.3.2" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#import-the-forest-fire-dataset-1"><i class="fa fa-check"></i><b>4.3.2</b> Import the forest fire dataset</a></li>
-<li class="chapter" data-level="4.3.3" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#ff-subsets-based-on-the-burned-areas-size"><i class="fa fa-check"></i><b>4.3.3</b> FF-subsets based on the burned areas’ size</a></li>
-<li class="chapter" data-level="4.3.4" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#ff-subsets-based-on-the-geographical-distribution"><i class="fa fa-check"></i><b>4.3.4</b> FF-subsets based on the geographical distribution</a></li>
-<li class="chapter" data-level="4.3.5" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#extract-time-and-pts-object"><i class="fa fa-check"></i><b>4.3.5</b> Extract time and PTS object</a></li>
-<li class="chapter" data-level="4.3.6" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#compute-the-space-time-k-function"><i class="fa fa-check"></i><b>4.3.6</b> Compute the space-time K-function</a></li>
-<li class="chapter" data-level="4.3.7" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#assess-the-space-time-clustering-behavior"><i class="fa fa-check"></i><b>4.3.7</b> Assess the space-time clustering behavior</a></li>
-<li class="chapter" data-level="4.3.8" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#compute-the-space-time-kernel-density-estimator"><i class="fa fa-check"></i><b>4.3.8</b> Compute the space-time Kernel Density Estimator</a></li>
+<li class="chapter" data-level="4.3.1" data-path="kde.html"><a href="kde.html#load-the-libraries-1"><i class="fa fa-check"></i><b>4.3.1</b> Load the libraries</a></li>
+<li class="chapter" data-level="4.3.2" data-path="kde.html"><a href="kde.html#import-the-forest-fire-dataset-1"><i class="fa fa-check"></i><b>4.3.2</b> Import the forest fire dataset</a></li>
+<li class="chapter" data-level="4.3.3" data-path="kde.html"><a href="kde.html#forest-fires-subsets-based-on-the-size-of-the-burned-area"><i class="fa fa-check"></i><b>4.3.3</b> Forest fires subsets based on the size of the burned area</a></li>
+<li class="chapter" data-level="4.3.4" data-path="kde.html"><a href="kde.html#ff-subsets-based-on-their-geographical-distribution"><i class="fa fa-check"></i><b>4.3.4</b> FF-subsets based on their geographical distribution</a></li>
+<li class="chapter" data-level="4.3.5" data-path="kde.html"><a href="kde.html#extract-time-and-pts-object"><i class="fa fa-check"></i><b>4.3.5</b> Extract time and PTS object</a></li>
+<li class="chapter" data-level="4.3.6" data-path="kde.html"><a href="kde.html#compute-the-st-k-function"><i class="fa fa-check"></i><b>4.3.6</b> Compute the ST K-function</a></li>
+<li class="chapter" data-level="4.3.7" data-path="kde.html"><a href="kde.html#assess-the-st-clustering-behavior"><i class="fa fa-check"></i><b>4.3.7</b> Assess the ST clustering behavior</a></li>
+<li class="chapter" data-level="4.3.8" data-path="kde.html"><a href="kde.html#compute-the-st-kernel-density-estimator"><i class="fa fa-check"></i><b>4.3.8</b> Compute the ST Kernel Density Estimator</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html"><a href="spatio-temporal-cluster-analysis-of-geoenvironmental-processes.html#conclusions-and-further-analyses-1"><i class="fa fa-check"></i><b>4.4</b> Conclusions and further analyses</a></li>
+<li class="chapter" data-level="4.4" data-path="kde.html"><a href="kde.html#conclusions-and-further-analyses-1"><i class="fa fa-check"></i><b>4.4</b> Conclusions and further analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html"><i class="fa fa-check"></i><b>5</b> Predictive Mapping of Natural Hazards Using Random Forest</a>
+<li class="chapter" data-level="5" data-path="global-rf.html"><a href="global-rf.html"><i class="fa fa-check"></i><b>5</b> Predictive Mapping of Natural Hazards Using Random Forest</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#rf-for-landslides-susceptibility-mapping"><i class="fa fa-check"></i><b>5.1</b> RF for landslides susceptibility mapping</a></li>
-<li class="chapter" data-level="5.2" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#computing-lab-random-forest"><i class="fa fa-check"></i><b>5.2</b> Computing lab: Random Forest</a>
+<li class="chapter" data-level="5.1" data-path="global-rf.html"><a href="global-rf.html#rf-for-landslides-susceptibility-mapping"><i class="fa fa-check"></i><b>5.1</b> RF for landslides susceptibility mapping</a></li>
+<li class="chapter" data-level="5.2" data-path="global-rf.html"><a href="global-rf.html#computing-lab-random-forest"><i class="fa fa-check"></i><b>5.2</b> Computing lab: Random Forest</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#load-the-libraries-2"><i class="fa fa-check"></i><b>5.2.1</b> Load the libraries</a></li>
-<li class="chapter" data-level="5.2.2" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#load-the-input-datasets"><i class="fa fa-check"></i><b>5.2.2</b> Load the input datasets</a></li>
-<li class="chapter" data-level="5.2.3" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#the-use-of-categorical-variables-in-machine-learning"><i class="fa fa-check"></i><b>5.2.3</b> The use of categorical variables in Machine Learning</a></li>
-<li class="chapter" data-level="5.2.4" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#extract-the-values"><i class="fa fa-check"></i><b>5.2.4</b> Extract the values</a></li>
-<li class="chapter" data-level="5.2.5" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#split-the-input-dataset-into-training-and-testing"><i class="fa fa-check"></i><b>5.2.5</b> Split the input dataset into training and testing</a></li>
-<li class="chapter" data-level="5.2.6" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#run-random-forest"><i class="fa fa-check"></i><b>5.2.6</b> Run Random Forest</a></li>
-<li class="chapter" data-level="5.2.7" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#rf-main-outputs"><i class="fa fa-check"></i><b>5.2.7</b> RF main outputs</a></li>
-<li class="chapter" data-level="5.2.8" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#model-evaluation"><i class="fa fa-check"></i><b>5.2.8</b> Model evaluation</a></li>
+<li class="chapter" data-level="5.2.1" data-path="global-rf.html"><a href="global-rf.html#load-the-libraries-2"><i class="fa fa-check"></i><b>5.2.1</b> Load the libraries</a></li>
+<li class="chapter" data-level="5.2.2" data-path="global-rf.html"><a href="global-rf.html#load-the-input-datasets"><i class="fa fa-check"></i><b>5.2.2</b> Load the input datasets</a></li>
+<li class="chapter" data-level="5.2.3" data-path="global-rf.html"><a href="global-rf.html#the-use-of-categorical-variables-in-machine-learning"><i class="fa fa-check"></i><b>5.2.3</b> The use of categorical variables in Machine Learning</a></li>
+<li class="chapter" data-level="5.2.4" data-path="global-rf.html"><a href="global-rf.html#extract-the-values"><i class="fa fa-check"></i><b>5.2.4</b> Extract the values</a></li>
+<li class="chapter" data-level="5.2.5" data-path="global-rf.html"><a href="global-rf.html#split-the-input-dataset-into-training-and-testing"><i class="fa fa-check"></i><b>5.2.5</b> Split the input dataset into training and testing</a></li>
+<li class="chapter" data-level="5.2.6" data-path="global-rf.html"><a href="global-rf.html#run-random-forest"><i class="fa fa-check"></i><b>5.2.6</b> Run Random Forest</a></li>
+<li class="chapter" data-level="5.2.7" data-path="global-rf.html"><a href="global-rf.html#rf-main-outputs"><i class="fa fa-check"></i><b>5.2.7</b> RF main outputs</a></li>
+<li class="chapter" data-level="5.2.8" data-path="global-rf.html"><a href="global-rf.html#model-evaluation"><i class="fa fa-check"></i><b>5.2.8</b> Model evaluation</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#susceptibility-mapping"><i class="fa fa-check"></i><b>5.3</b> Susceptibility mapping</a>
+<li class="chapter" data-level="5.3" data-path="global-rf.html"><a href="global-rf.html#susceptibility-mapping"><i class="fa fa-check"></i><b>5.3</b> Susceptibility mapping</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#class-intervals-for-decision-maker"><i class="fa fa-check"></i><b>5.3.1</b> Class intervals for decision maker</a></li>
+<li class="chapter" data-level="5.3.1" data-path="global-rf.html"><a href="global-rf.html#class-intervals-for-decision-maker"><i class="fa fa-check"></i><b>5.3.1</b> Class intervals for decision maker</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="predictive-mapping-of-natural-hazards-using-random-forest.html"><a href="predictive-mapping-of-natural-hazards-using-random-forest.html#conclusions-and-further-analyses-2"><i class="fa fa-check"></i><b>5.4</b> Conclusions and further analyses</a></li>
+<li class="chapter" data-level="5.4" data-path="global-rf.html"><a href="global-rf.html#conclusions-and-further-analyses-2"><i class="fa fa-check"></i><b>5.4</b> Conclusions and further analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html"><i class="fa fa-check"></i><b>6</b> Interpretability &amp; Explainability with Random Forest</a>
+<li class="chapter" data-level="6" data-path="local-rf.html"><a href="local-rf.html"><i class="fa fa-check"></i><b>6</b> Interpretability &amp; Explainability with Random Forest</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#aim-of-the-present-lab"><i class="fa fa-check"></i><b>6.1</b> Aim of the present lab</a></li>
-<li class="chapter" data-level="6.2" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#computing-lab-understanding-random-forest-models"><i class="fa fa-check"></i><b>6.2</b> Computing lab: Understanding Random Forest Models</a>
+<li class="chapter" data-level="6.1" data-path="local-rf.html"><a href="local-rf.html#aim-of-the-present-lab"><i class="fa fa-check"></i><b>6.1</b> Aim of the present lab</a></li>
+<li class="chapter" data-level="6.2" data-path="local-rf.html"><a href="local-rf.html#computing-lab-understanding-random-forest-models"><i class="fa fa-check"></i><b>6.2</b> Computing lab: Understanding Random Forest Models</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#re-load-libraries-and-workspace"><i class="fa fa-check"></i><b>6.2.1</b> Re-load libraries and workspace</a></li>
-<li class="chapter" data-level="6.2.2" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#surrogate-model"><i class="fa fa-check"></i><b>6.2.2</b> Surrogate model</a></li>
-<li class="chapter" data-level="6.2.3" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#features-importance-score"><i class="fa fa-check"></i><b>6.2.3</b> Features importance score</a></li>
-<li class="chapter" data-level="6.2.4" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#partial-dependence-plot"><i class="fa fa-check"></i><b>6.2.4</b> Partial dependence plot</a></li>
+<li class="chapter" data-level="6.2.1" data-path="local-rf.html"><a href="local-rf.html#re-load-libraries-and-workspace"><i class="fa fa-check"></i><b>6.2.1</b> Re-load libraries and workspace</a></li>
+<li class="chapter" data-level="6.2.2" data-path="local-rf.html"><a href="local-rf.html#surrogate-model"><i class="fa fa-check"></i><b>6.2.2</b> Surrogate model</a></li>
+<li class="chapter" data-level="6.2.3" data-path="local-rf.html"><a href="local-rf.html#features-importance-score"><i class="fa fa-check"></i><b>6.2.3</b> Features importance score</a></li>
+<li class="chapter" data-level="6.2.4" data-path="local-rf.html"><a href="local-rf.html#partial-dependence-plot"><i class="fa fa-check"></i><b>6.2.4</b> Partial dependence plot</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#local-feature-importance"><i class="fa fa-check"></i><b>6.3</b> Local feature importance</a></li>
-<li class="chapter" data-level="6.4" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#computing-lab-geographical-random-forest"><i class="fa fa-check"></i><b>6.4</b> Computing lab: Geographical Random Forest</a>
+<li class="chapter" data-level="6.3" data-path="local-rf.html"><a href="local-rf.html#local-feature-importance"><i class="fa fa-check"></i><b>6.3</b> Local feature importance</a></li>
+<li class="chapter" data-level="6.4" data-path="local-rf.html"><a href="local-rf.html#computing-lab-geographical-random-forest"><i class="fa fa-check"></i><b>6.4</b> Computing lab: Geographical Random Forest</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#global-variable-importance-plot"><i class="fa fa-check"></i><b>6.4.1</b> Global variable importance plot</a></li>
-<li class="chapter" data-level="6.4.2" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#local-feature-importance-mapping"><i class="fa fa-check"></i><b>6.4.2</b> Local feature importance mapping</a></li>
-<li class="chapter" data-level="6.4.3" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#local-r-squared"><i class="fa fa-check"></i><b>6.4.3</b> Local R squared</a></li>
+<li class="chapter" data-level="6.4.1" data-path="local-rf.html"><a href="local-rf.html#global-variable-importance-plot"><i class="fa fa-check"></i><b>6.4.1</b> Global variable importance plot</a></li>
+<li class="chapter" data-level="6.4.2" data-path="local-rf.html"><a href="local-rf.html#local-feature-importance-mapping"><i class="fa fa-check"></i><b>6.4.2</b> Local feature importance mapping</a></li>
+<li class="chapter" data-level="6.4.3" data-path="local-rf.html"><a href="local-rf.html#local-r-squared"><i class="fa fa-check"></i><b>6.4.3</b> Local R squared</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="interpretability-explainability-with-random-forest.html"><a href="interpretability-explainability-with-random-forest.html#conclusions-and-further-analyses-3"><i class="fa fa-check"></i><b>6.5</b> Conclusions and further analyses</a></li>
+<li class="chapter" data-level="6.5" data-path="local-rf.html"><a href="local-rf.html#conclusions-and-further-analyses-3"><i class="fa fa-check"></i><b>6.5</b> Conclusions and further analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><i class="fa fa-check"></i><b>7</b> Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach</a>
+<li class="chapter" data-level="7" data-path="som.html"><a href="som.html"><i class="fa fa-check"></i><b>7</b> Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#geo-demographic-context-in-switzerland"><i class="fa fa-check"></i><b>7.1</b> Geo-demographic context in Switzerland</a>
+<li class="chapter" data-level="7.1" data-path="som.html"><a href="som.html#geo-demographic-context-in-switzerland"><i class="fa fa-check"></i><b>7.1</b> Geo-demographic context in Switzerland</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#swiss-census-data"><i class="fa fa-check"></i><b>7.1.1</b> Swiss census data</a></li>
+<li class="chapter" data-level="7.1.1" data-path="som.html"><a href="som.html#swiss-census-data"><i class="fa fa-check"></i><b>7.1.1</b> Swiss census data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#self-organizing-map"><i class="fa fa-check"></i><b>7.2</b> Self Organizing Map</a></li>
-<li class="chapter" data-level="7.3" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#computing-lab-som"><i class="fa fa-check"></i><b>7.3</b> Computing lab: SOM</a>
+<li class="chapter" data-level="7.2" data-path="som.html"><a href="som.html#self-organizing-map"><i class="fa fa-check"></i><b>7.2</b> Self Organizing Map</a></li>
+<li class="chapter" data-level="7.3" data-path="som.html"><a href="som.html#computing-lab-som"><i class="fa fa-check"></i><b>7.3</b> Computing lab: SOM</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#load-the-libraries-3"><i class="fa fa-check"></i><b>7.3.1</b> Load the libraries</a></li>
-<li class="chapter" data-level="7.3.2" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#import-the-swiss-census-dataset"><i class="fa fa-check"></i><b>7.3.2</b> Import the Swiss census dataset</a></li>
-<li class="chapter" data-level="7.3.3" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#run-som"><i class="fa fa-check"></i><b>7.3.3</b> Run SOM</a></li>
+<li class="chapter" data-level="7.3.1" data-path="som.html"><a href="som.html#load-the-libraries-3"><i class="fa fa-check"></i><b>7.3.1</b> Load the libraries</a></li>
+<li class="chapter" data-level="7.3.2" data-path="som.html"><a href="som.html#import-the-swiss-census-dataset"><i class="fa fa-check"></i><b>7.3.2</b> Import the Swiss census dataset</a></li>
+<li class="chapter" data-level="7.3.3" data-path="som.html"><a href="som.html#run-som"><i class="fa fa-check"></i><b>7.3.3</b> Run SOM</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#hierarchical-clustering"><i class="fa fa-check"></i><b>7.4</b> Hierarchical clustering</a>
+<li class="chapter" data-level="7.4" data-path="som.html"><a href="som.html#hierarchical-clustering"><i class="fa fa-check"></i><b>7.4</b> Hierarchical clustering</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#map-clusters-onto-the-geographical-space"><i class="fa fa-check"></i><b>7.4.1</b> <strong>Map clusters onto the geographical space</strong></a></li>
+<li class="chapter" data-level="7.4.1" data-path="som.html"><a href="som.html#map-clusters-onto-the-geographical-space"><i class="fa fa-check"></i><b>7.4.1</b> <strong>Map clusters onto the geographical space</strong></a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#clusters-characterization"><i class="fa fa-check"></i><b>7.5</b> Clusters characterization</a></li>
-<li class="chapter" data-level="7.6" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#conclusions"><i class="fa fa-check"></i><b>7.6</b> Conclusions</a></li>
-<li class="chapter" data-level="7.7" data-path="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html"><a href="defining-territorial-typologies-using-unsupervised-learning-a-som-approach.html#further-analyses"><i class="fa fa-check"></i><b>7.7</b> Further analyses</a></li>
+<li class="chapter" data-level="7.5" data-path="som.html"><a href="som.html#clusters-characterization"><i class="fa fa-check"></i><b>7.5</b> Clusters characterization</a></li>
+<li class="chapter" data-level="7.6" data-path="som.html"><a href="som.html#conclusions"><i class="fa fa-check"></i><b>7.6</b> Conclusions</a></li>
+<li class="chapter" data-level="7.7" data-path="som.html"><a href="som.html#further-analyses"><i class="fa fa-check"></i><b>7.7</b> Further analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html"><i class="fa fa-check"></i><b>8</b> DBSCAN for 3D features detection in geosciences</a>
+<li class="chapter" data-level="8" data-path="dbscan.html"><a href="dbscan.html"><i class="fa fa-check"></i><b>8</b> DBSCAN for 3D features detection in geosciences</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#the-overall-methodology-1"><i class="fa fa-check"></i><b>8.1</b> The overall methodology</a>
+<li class="chapter" data-level="8.1" data-path="dbscan.html"><a href="dbscan.html#the-overall-methodology-1"><i class="fa fa-check"></i><b>8.1</b> The overall methodology</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#dbscan-3-d-density-based-clustering-algorithm"><i class="fa fa-check"></i><b>8.1.1</b> DBSCAN: 3-D density based clustering algorithm</a></li>
-<li class="chapter" data-level="8.1.2" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#field-campaign"><i class="fa fa-check"></i><b>8.1.2</b> Field campaign</a></li>
+<li class="chapter" data-level="8.1.1" data-path="dbscan.html"><a href="dbscan.html#dbscan-3-d-density-based-clustering-algorithm"><i class="fa fa-check"></i><b>8.1.1</b> DBSCAN: 3-D density based clustering algorithm</a></li>
+<li class="chapter" data-level="8.1.2" data-path="dbscan.html"><a href="dbscan.html#field-campaign"><i class="fa fa-check"></i><b>8.1.2</b> Field campaign</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#computing-lab-dbscan"><i class="fa fa-check"></i><b>8.2</b> Computing lab: DBSCAN</a>
+<li class="chapter" data-level="8.2" data-path="dbscan.html"><a href="dbscan.html#computing-lab-dbscan"><i class="fa fa-check"></i><b>8.2</b> Computing lab: DBSCAN</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#load-the-libraries-4"><i class="fa fa-check"></i><b>8.2.1</b> Load the libraries</a></li>
-<li class="chapter" data-level="8.2.2" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#import-and-visualize-the-point-clouds-dataset"><i class="fa fa-check"></i><b>8.2.2</b> Import and visualize the point clouds dataset</a></li>
-<li class="chapter" data-level="8.2.3" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#compute-dbscan"><i class="fa fa-check"></i><b>8.2.3</b> Compute DBSCAN</a></li>
+<li class="chapter" data-level="8.2.1" data-path="dbscan.html"><a href="dbscan.html#load-the-libraries-4"><i class="fa fa-check"></i><b>8.2.1</b> Load the libraries</a></li>
+<li class="chapter" data-level="8.2.2" data-path="dbscan.html"><a href="dbscan.html#import-and-visualize-the-point-clouds-dataset"><i class="fa fa-check"></i><b>8.2.2</b> Import and visualize the point clouds dataset</a></li>
+<li class="chapter" data-level="8.2.3" data-path="dbscan.html"><a href="dbscan.html#compute-dbscan"><i class="fa fa-check"></i><b>8.2.3</b> Compute DBSCAN</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="dbscan-for-3d-features-detection-in-geosciences.html"><a href="dbscan-for-3d-features-detection-in-geosciences.html#conclusions-and-further-analyses-4"><i class="fa fa-check"></i><b>8.3</b> Conclusions and further analyses</a></li>
+<li class="chapter" data-level="8.3" data-path="dbscan.html"><a href="dbscan.html#conclusions-and-further-analyses-4"><i class="fa fa-check"></i><b>8.3</b> Conclusions and further analyses</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -350,43 +351,44 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Advanced Geospatial Data Analysis with R – Applications in Geosciences</h1>
 <p class="author"><em>Dr. Marj Tonini, Haokun Liu</em></p>
-<p class="date"><em>10/10/2024</em></p>
+<p class="date"><em>09/12/2024</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Earth surface environmental processes exhibit distinctive characteristics, encompassing both spatial and temporal dimensions, along with various attributes and predictive variables.
-Coupled with uncertainty and complexity issues, all this contribute to make this field of research highly challenging.
+Coupled with uncertainty and complexity issues, all this contributes to make this field of research highly challenging.
 Furthermore, in the era of Data Science, the wealth of available data and the rapid development of analytical models have emerged as distinctive aspects in the realm of <strong>Advanced Geospatial Data Analysis (AGDA)</strong>.
 The domain of AGDA encompasses data exploration, manipulation, and modelling, from the acquisition phase up to the visualization and interpretation of the results.
 Mapping where events are located and how they relate to each other provides a better understanding of the process being studied.
 Finally, as an increasing volume of geo-environmental data becomes more and more accessible, the demand for spatial data scientists is growing rapidly, both in public research institutions as well as in private companies.</p>
-<p>The term “<strong>Data Science</strong>” was defined for the first time by Peter Naur in 1974 as “<em>the science of dealing with data, once they have been established, while the relation of the data to what they represent is delegated to other fields and sciences</em>” <span class="citation">(<a href="#ref-naur_peter_concise_1974">Naur, Peter, 1974</a>)</span>.
-In essence, this definition frames Data Science as the technical and methodological handling of data, while the initial creation or gathering of data, as well as the interpretation of its meaning in the broader context, is not the primary focus of this discipline.
-In 1977, the International Association for Statistical Computing was estabilished and further refined the concept of data science, emphasizing its role in the process of transforming raw data into valuable information and actionable knowledge (<a href="https://iasc-isi.org/">IASC</a>).
-The IASC articulated that data science involves not only the collection and processing of data but also the application of statistical methods and computational techniques to extract meaningful insights, which can then be used to support decision-making and drive innovation across various domains​</p>
-<p>In disciplines like environmental and earth Sciences, physical geography, humanities and social sciences, the use of Data Science procedures is emerging only recently, proving to be extremely efficient to deal with the complexity of the investigated process and the heterogeneity of the underlying data sources <span class="citation">(<a href="#ref-amato_spatiotemporal_2022">Amato et al., 2022</a>)</span>.
+<p>The term “<strong>Data Science</strong>” was defined for the first time by Peter Naur in 1974 as “<em>the science of dealing with data, once they have been established, while the relation of the data to what they represent is delegated to other fields and sciences</em>” <span class="citation">(<a href="#ref-naur_peter_concise_1974">Naur, Peter 1974</a>)</span>.
+In essence, this definition frames Data Science as the technical and methodological handling of data, while their initial creation or gathering, as well as the interpretation of its meaning in the broader context, is not the primary focus of this discipline.
+In 1977 the International Association for Statistical Computing (<a href="https://iasc-isi.org/">IASC</a>) further refined the concept of Data Science, emphasizing its role in the process of transforming raw data into valuable information and actionable knowledge.
+The IASC articulated that Data Science involves not only the collection and processing of data, but also the application of statistical methods and computational techniques to extract meaningful insights, which can then be used to support decision-making and drive innovation across various domains.</p>
+<p>In disciplines like environmental and earth Sciences, physical geography, humanities and social sciences, the use of Data Science procedures is emerging only recently, proving to be extremely efficient to deal with the complexity of the investigated process and the heterogeneity of the underlying data sources <span class="citation">(<a href="#ref-amato_spatiotemporal_2022">Amato et al. 2022</a>)</span>.
 This leads to a cultural shift, moving scientists away from individual working within their own research domain.
 Indeed, disciplinary boundaries are more and more permeable, pushing scientists to be more open to collaborate among them and with decision makers on the investigation and understanding of real-world problems.
 Modern earth and environmental scientists need to interact with other disciplines, apparently far from their domain.
 This openness is increasingly important as society struggles to respond to the implication of anthropogenic pressures on different issues, such as natural hazards and climate change, or the harmful impacts of human activities on biodiversity, water and air quality, human health.</p>
 <div id="book-overview" class="section level2 unnumbered hasAnchor">
 <h2>Book overview<a href="index.html#book-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The primary focus of this eBook is the application of Data Science methodologies to analyze and understand Earth’s surface environmental processes.
-The scientific approaches in this emerging field (spanning statistics, mathematics, geomatics, and computer science) are often challenging to master.
-Thus, while maintaining a rigorous emphasis on mathematical and statistical formalism, this eBook prioritizes practical applications in the domain of Geosciences.</p>
-<p>Emphasis will be placed on the application of advanced geospatial tools to natural and anthropogenic hazards, and to land use processes.
-Theoretical concepts will be supported by case studies achieved using spatial clustering techniques and supervised and unsupervised machine learning algorithms (e.g., stochastic point process models for spatio-temporal cluster analysis; application of machine learning based approaches for geodemographic segmentation, susceptibility assessment and risk mapping).</p>
+<p>This eBook primarily focuses on introducing analytical techniques from the field of Data Science to analyze and understand environmental processes occurring on Earth’s surface.
+Mastering the methodologies in this multidisciplinary and rapidly evolving field—encompassing statistics, mathematics, geomatics, and computer science—can be a challenging endeavor.
+To address this, the eBook maintains a rigorous foundation in mathematical and statistical principles while emphasizing practical applications within the domain of Geosciences.</p>
+<p>Emphasis is placed on the application of advanced geospatial tools to analyze and model both natural and anthropogenic hazards, as well as land-use processes.
+Theoretical concepts are reinforced through case studies employing spatial clustering techniques and both supervised and unsupervised machine learning algorithms.
+Examples include stochastic point process models for spatio-temporal cluster analysis and machine learning-based approaches for geodemographic segmentation, susceptibility assessment, and risk mapping.</p>
 <div id="computing-lab" class="section level3 unnumbered hasAnchor">
 <h3>Computing lab<a href="index.html#computing-lab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Computations are conducted using the R free software environment, which is specifically designed for data analysis and manipulation.</p>
-<p>The computing labs will cover the following geocomputational techniques:</p>
+<p>After a brief introduction to the main functionalities in R (see Chapter <a href="intro.html#intro">1</a>) and an overview of the basic operations with geospatial data (see Chapter <a href="geodata.html#geodata">2</a>), the rest of the chapters will focus on the following geo-computational techniques:</p>
 <ul>
-<li><em>Exploratory Data Analysis and Visualization</em>: examining geographical variations in statistical data distributions, including Geographically Weighted Summary Statistics (<span id="id_03-GWSS">Chapter 3</span>).</li>
-<li><em>Cluster Detection and Mapping</em>: global clustering approaches–namely Ripley’s K-function and Kernel Density Estimator (Chapter 4) – and an example of local method, DBSCAN, for identifying and visualizing clustering features (Chapter 8).</li>
-<li><em>Random Forest</em>: as example of supervised machine learning algorithm. We present both the global (Chapter 5) and the local version, and we use Random Forest to introduce interpretability &amp; explainability in machine learning (Chapter 6) .</li>
-<li><em>Self-Organizing Maps</em>: as example of unsupervised machine learning method for data clustering/segmentation and visualization (Chapter 7).</li>
+<li><em>Exploratory Data Analysis and Visualization</em>: examining geographical variations in statistical data distributions, including Geographically Weighted Summary Statistics (Chapter <a href="gwss.html#gwss">3</a>).</li>
+<li><em>Cluster Detection and Mapping</em>: using global clustering methods, namely Ripley’s K-function and Kernel Density Estimator (Chapter <a href="kde.html#kde">4</a>).</li>
+<li><em>Random Forest</em>: as example of supervised machine learning algorithm. We present both the global (Chapter <a href="global-rf.html#global-rf">5</a>) and the local version, and we use Random Forest to introduce interpretability &amp; explainability in machine learning (Chapter <a href="local-rf.html#local-rf">6</a>) .</li>
+<li><em>Self-Organizing Maps</em>: as example of unsupervised machine learning method for data clustering/segmentation and visualization (Chapter <a href="som.html#som">7</a>).</li>
+<li><em>Feature detection</em>: using DBSCAN for identifying and visualizing clustering features (Chapter <a href="dbscan.html#dbscan">8</a>).</li>
 </ul>
-<p>In addition, the first two chapters offer a brief introduction to the main functionalities in R (Chapter 1) and cover some basic operations with geospatial data in R (Chapter 2).</p>
 <p>To complete the applied computing labs presented in each chapter, readers can download the datasets from here: <a href="data">dataset</a></p>
 </div>
 <div id="target-audience" class="section level3 unnumbered hasAnchor">
@@ -398,7 +400,7 @@ Our goal is to empower students by guiding them through both theoretical knowled
 <li>A solid understanding of key practical concepts and applied aspects in AGDA.</li>
 <li>Advanced tools to effectively navigate and analyze spatial datasets in Geosciences.</li>
 </ul>
-<p>It is designed for intermediate to advanced R users with experience in geospatial data analyses and a keen interest in geocomputing.
+<p>The eBook is designed for intermediate to advanced R users with previous experience in geospatial data analyses and a keen interest in geocomputing.
 If you have only a basic knowledge of these areas, we strongly encourage you to explore the essential references provided in each chapter.
 These resources offer valuable documentation and additional materials to help deepen your understanding.</p>
 <p><strong>The main prerequisites are the following</strong>:</p>
@@ -412,17 +414,17 @@ These resources offer valuable documentation and additional materials to help de
 <div id="authors-information" class="section level2 unnumbered hasAnchor">
 <h2>Authors information<a href="index.html#authors-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Marj Tonini</strong> is a spatial data scientist with a profound expertise in geospatial modeling for risk assessment, particularly in relation to wildfires and landslides.
-She earned her Ph.D. in 2002 from the <a href="https://www.santannapisa.it/en">Sant’Anna School of Advanced Studies</a> in Pisa, Italy, where she developed an agro-environmental modeling thesis that laid the foundation for her career.
-In 2004, she joined the <a href="https://www.unil.ch/central/en/home.html">University of Lausanne</a> as a postdoctoral researcher in geospatial data analysis, and by 2008, she was appointed as Senior Research Manager at the <a href="https://www.unil.ch/idyst/en/home.html">Institute of Earth Surface Dynamics</a>, where she continues to serve in her current role.
-Since 2022, Marj has been the director of the <a href="https://unil-sgc.github.io/">Swiss Geocomputing Centre</a>, with a four-year term.
-Marj’s research is centered on the development of innovative methodologies that facilitate the efficient extraction of knowledge from complex environmental datasets.
-Her work is driven by the goal of creating a robust methodological framework to understand the spatio-temporal dynamics of environmental processes and to evaluate the influence of various predictor variables.
+She earned her Ph.D. in 2002 from the <a href="https://www.santannapisa.it/en">Sant’Anna School of Advanced Studies</a> in Pisa, Italy, where she developed a thesis on agro-environmental modeling that laid the foundation for her career.
+In 2004, she joined the <a href="https://www.unil.ch/central/en/home.html">University of Lausanne</a> (UNIL) as a postdoctoral researcher in geospatial data analysis, and by 2008, she was appointed as Senior Research Manager at the <a href="https://www.unil.ch/idyst/en/home.html">Institute of Earth Surface Dynamics</a>, where she continues to serve in her current role.
+Sine 2022 she has been servig a four-year term as the director of the <a href="https://unil-sgc.github.io/">Swiss Geocomputing Centre</a> of the Faculty of Geosciences and environment (UNIL)</p>
+<p>Marj’s research focuses on the development of innovative methodologies that facilitate the efficient extraction of knowledge from complex environmental datasets.
+Her work aims to estabilishing a robust methodological framework to understand the spatio-temporal dynamics of environmental processes and to evaluate the influence of various predictor variables.
 Her current research focuses on the analysis of land use and land cover changes, alongside the development of predictive scenarios and the assessment of susceptibility and risks associated with natural hazards.
-Through her work, she seeks to advance the field of geospatial science by translating data-driven insights into practical solutions for managing and mitigating environmental risks.
+Through this work she seeks to advance the field of geospatial science by translating data-driven insights into practical solutions for managing and mitigating environmental risks.
 You can find the full list of her publications on <a href="https://www.researchgate.net/profile/Marj-Tonini-2">ResearchGate</a> and <a href="https://scholar.google.it/citations?user=qXexP-IAAAAJ&amp;hl=en">Google Scholar</a>.</p>
 <p>Marj has written the vast majority of this book.
 Her contributions include the development of the conceptual framework, writing the theoretical background chapters, developing case studies, designing methodologies, conducting data collection and analysis, and software/tool development.
-The following section “My Journey of Learning” refers to her personal experience.</p>
+The following section “<em>My Journey of Learning</em>” refers to her personal experience.</p>
 <p><strong>Haokun Liu</strong> is a Ph.D. student at the Group of <a href="https://wp.unil.ch/citadyne-news/">Cities and Dynamics of Networks</a>, <a href="https://www.unil.ch/central/en/home.html">University of Lausanne</a>.
 In addition to his doctoral studies, he serves as a student assistant at the <a href="https://unil-sgc.github.io/">Swiss Geocomputing Center</a>.
 Benefiting from rigorous and comprehensive training in both China and Switzerland, Haokun has developed a diverse research portfolio.
@@ -434,18 +436,12 @@ He also played a key role in data visualization and mapping, and provided valuab
 <div id="my-journey-of-learning-integrating-geospatial-data-analysis-with-data-science" class="section level2 unnumbered hasAnchor">
 <h2>My Journey of Learning: Integrating Geospatial Data Analysis with Data Science<a href="index.html#my-journey-of-learning-integrating-geospatial-data-analysis-with-data-science" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the early 2000s, as I (Marj) embarked on my PhD journey, a new frontier was beginning to unfold in Geosciences.
-Geographical information systems (GIS) were just starting to make waves, offering a fresh perspective on how we could investigate and understand the environment.
+Geographical information systems (GIS) were just starting to make waves, offering a fresh perspective on how researchers could investigate and understand the environment.
 It was through my thesis on the effects of spreading olive vegetation water on agricultural land that I first delved into the world of GIS.
-Each tool and technique I learned opened new doors, revealing the vast potential of spatial data in environmental analysis and processing.
-This early exposure was more than just a technical skill; it was a revelation.
-I began to see the world through the lens of spatial data, understanding how it could illuminate patterns and connections that were otherwise hidden.
-This experience not only shaped my research but ignited a passion that would drive me to explore the depths of spatial analysis for years to come.</p>
-<p>After completing my PhD, my journey led me to a PostDoc position where I had the extraordinary opportunity to work alongside Professor <a href="https://www.egu.eu/awards-medals/ian-mcharg/2022/mikhail-kanevski/">Mikhail Kanevski</a>.
-Mikhail was a true pioneer, a visionary in the fields of environmental data mining, geostatistics, and the burgeoning field of applying machine learning to spatial environmental data.
-Being part of his research group was like stepping into a realm where the boundaries of what was possible were constantly being pushed and redefined.
-In this research team, I found myself diving headfirst into the world of spatial statistics, driven by the desire to uncover valuable insights from the complex data that described our environment.
-The work was challenging, yet it was also exhilarating, as every new technique I learned brought me closer to understanding the intricate tapestry of environmental phenomena.
-This experience was pivotal, setting the course for my future research and solidifying my belief in the power of combining advanced techniques with a deep understanding of spatial data.</p>
+This early exposure was more than just a technical skill; it was a revelation that would drive me to explore the depths of spatial analysis for years to come.</p>
+<p>After completing my PhD, my journey led me to a PostDoc position where I had the privile of working with Professor <a href="https://www.egu.eu/awards-medals/ian-mcharg/2022/mikhail-kanevski/">Mikhail Kanevski</a>, a true pioneer in the fields of environmental data mining, geostatistics, and the emerging field of applying machine learning to spatial environmental data.
+In this dynamic research team, I found myself diving headfirst into the world of spatial data science, driven by the desire to uncover valuable insights from the complex data that described our environment.
+The work was challenging, yet it was also exhilarating, as every new technique I learned brought me closer to understanding the intricate tapestry of environmental phenomena.</p>
 <p>As the years passed, the tools and resources available to researchers like me grew exponentially.
 The development and widespread adoption of free programming languages like and <a href="https://www.r-project.org/">R</a> and <a href="https://www.python.org/">Python</a> revolutionized the way we approached statistical analysis and machine learning.
 What was once the domain of a select few became accessible to many, thanks to the wealth of pre-developed scripts and resources these languages offered.
@@ -453,7 +449,7 @@ For me, and for countless others, this accessibility was a game-changer.
 It meant that advanced techniques were no longer out of reach, and it fostered a culture of greater reproducibility in research.
 By utilizing standardized, widely adopted open-source programming languages and cloud-based platforms for hosting and managing Git repositories, such as <a href="https://github.com/">GitHub</a>, researchers can now more easily share their code and methodologies, enabling others to replicate and validate their findings.
 This collaborative spirit has enhanced the reliability and credibility of scientific research and fostered a community where knowledge is shared and expanded more efficiently.</p>
-<p>Reflecting on this journey, I realize that each step—from my early days with GIS to my time in Professor Kanevski’s group, to my current role as an independent lead researcher in environmental spatial data analysis in the era of data science—has been a chapter in a larger story of discovery and innovation.
+<p>Reflecting on this journey, I realize that each step – from my early days with GIS to my current role as an independent lead researcher in environmental spatial data analysis in the era of Data Science – has been a chapter in a larger story of discovery and innovation.
 It’s a story of how spatial data and advanced analytics have become indispensable tools in our quest to understand and protect the environment, and it’s a story that continues to unfold with each new challenge and breakthrough.</p>
 </div>
 <div id="acknowledgements" class="section level2 unnumbered hasAnchor">
@@ -472,12 +468,12 @@ Both Julien and Axelle exemplify the high caliber of master’s students I have 
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-amato_spatiotemporal_2022" class="csl-entry">
-Amato, F., Lombardo, L., Tonini, M., Marvuglia, A., Castro-Camilo, D., &amp; Guignard, F. (2022). Spatiotemporal data science: Theoretical advances and applications. <em>Stochastic Environmental Research and Risk Assessment</em>, <em>36</em>(8), 2027–2029. <a href="https://doi.org/10.1007/s00477-022-02281-4">https://doi.org/10.1007/s00477-022-02281-4</a>
+Amato, Federico, Luigi Lombardo, Marj Tonini, Antonino Marvuglia, Daniela Castro-Camilo, and Fabian Guignard. 2022. <span>“Spatiotemporal Data Science: Theoretical Advances and Applications.”</span> <em>Stochastic Environmental Research and Risk Assessment</em> 36 (8): 2027–2029. doi:<a href="https://doi.org/10.1007/s00477-022-02281-4">10.1007/s00477-022-02281-4</a>.
 </div>
 <div id="ref-naur_peter_concise_1974" class="csl-entry">
-Naur, Peter. (1974). <em>Concise survey of computer methods</em>. New York : Petrocelli Books. <a href="https://archive.org/details/concisesurveyofc0000naur">https://archive.org/details/concisesurveyofc0000naur</a>
+Naur, Peter. 1974. <em>Concise Survey of Computer Methods</em>. New York : Petrocelli Books. <a href="https://archive.org/details/concisesurveyofc0000naur">https://archive.org/details/concisesurveyofc0000naur</a>.
 </div>
 </div>
             </section>
@@ -486,7 +482,7 @@ Naur, Peter. (1974). <em>Concise survey of computer methods</em>. New York : Pet
         </div>
       </div>
 
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -535,7 +531,8 @@ gitbook.start({
 },
 "toc": {
 "collapse": "subsection"
-}
+},
+"toc_depth": 2
 });
 });
 </script>

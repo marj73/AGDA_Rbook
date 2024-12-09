@@ -1,19 +1,14 @@
 ---
-bibliography: book.bib
+csl: "apa.csl"
 link-citations: true
-biblio-style: apalike
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
+bibliography: book.bib
 ---
 
 ```{r  global-options, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Introduction to R
+# Introduction to R  {#intro}
 
 ## R Language
 

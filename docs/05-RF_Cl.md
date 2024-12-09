@@ -1,17 +1,13 @@
 ---
-bibliography: book.bib
-csl: apa.csl
-link-citations: true
 editor_options:
   markdown:
     wrap: sentence
-    urlcolor: blue
 output: pdf_document
 ---
 
 
 
-# Predictive Mapping of Natural Hazards Using Random Forest 
+# Predictive Mapping of Natural Hazards Using Random Forest {#global-rf}
 
 Random Forest (RF) is a robust and widely-used machine learning algorithm particularly suited for predictive mapping in the context of natural hazards and susceptibility assessments.
 It operates by constructing multiple decision trees during training, and then aggregating their predictions to improve accuracy and generalizability [@breiman_random_2001].
@@ -33,10 +29,14 @@ The research framework that inspired this computing lab refers to a pioneering s
 Analyses have been adapted to the case study of landslides.
 The overall methodology is described in the following graphic.
 
-<div class="figure" style="text-align: center">
-<img src="images/Methodology.png" alt="Basic elements of the generic methodology \label{Methodology}" width="80%" height="80%" />
-<p class="caption">(\#fig:gen-met)Basic elements of the generic methodology \label{Methodology}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,height=0.8\textheight]{images/Methodology} 
+
+}
+
+\caption{Basic elements of the generic methodology \label{Methodology}}(\#fig:gen-met)
+\end{figure}
 
 ## Computing lab: Random Forest
 
@@ -53,7 +53,7 @@ To perform the analysis, you have first to install the following libraries:
 -   *ggplot2*: a system for declaratively creating graphics
 
 
-```r
+``` r
 library(terra)
 library(readr) 
 library(randomForest) 
@@ -82,7 +82,7 @@ Indeed, to assure a good generalization of the model and to avoid the overestima
 In this case study, an equal number of point as for presences has been randomly generated in the study area, except within landslides polygons, lakes and glaciers (that is what is called "*validity domain*", where events could potentially occur).
 
 
-```r
+``` r
 # Import the boundary of Canton Vaud 
 Vaud <- vect("data/RF/Vaud_CH.shp")
 Lake <- vect("data/RF/Lakes_VD.shp")
@@ -105,7 +105,7 @@ str(LS_vect)
 ## S4 class 'SpatVector' [package "terra"]
 ```
 
-```r
+``` r
 summary(LS_vect)
 ```
 
@@ -115,16 +115,16 @@ summary(LS_vect)
 ##  1:2594
 ```
 
-```r
+``` r
 # Plot the events
 plot(Vaud)
 plot(Lake, col="lightblue", add=TRUE)
 plot(LS_vect, col=LS_pa$LS, pch=20, cex=0.5, add=TRUE)
 ```
 
-<img src="05-RF_Cl_files/figure-html/import-data-1.png" width="672" style="display: block; margin: auto;" />
 
-![](http://127.0.0.1:18549/chunk_output/BE976A08f99d29bf/202F00B0/c53949tka16ee/000014.png)
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/import-data-1} \end{center}
 
 #### Predictor variables
 
@@ -162,7 +162,7 @@ Than the predictor variables have to be aggregated into a single object, storing
 We use here the generic function `c` to combine the single raster into a multiple-raster object.
 
 
-```r
+``` r
 ## Import raster (independent variables) 25 meter resolution
 
 landCover<-as.factor(rast("data/RF/landCover.tif"))
@@ -190,7 +190,9 @@ features <- terra::mask(features, dem)
 plot(features)
 ```
 
-<img src="05-RF_Cl_files/figure-html/import-raster-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/import-raster-1} \end{center}
 
 ### The use of categorical variables in Machine Learning
 
@@ -202,22 +204,30 @@ One of the advantage of using Random Forest (as implemented in R) is that it can
 To understand the characteristics of the categorical variables, you can plot the tow raster **Land Cover** and **Geology** by using their original classes and look at the attribute table to analyse the corresponding definitions.
 
 
-```r
+``` r
 plot(geology)
 ```
 
-<img src="05-RF_Cl_files/figure-html/geology-map-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/geology-map-1} \end{center}
+
+``` r
 plot(landCover)
 ```
 
-<img src="05-RF_Cl_files/figure-html/geology-map-2.png" width="672" style="display: block; margin: auto;" />
 
-<div class="figure" style="text-align: center">
-<img src="data/RF/Cat_classes.png" alt="Categorical variables \label{Cat_class}" width="80%" height="80%" />
-<p class="caption">(\#fig:cat_class)Categorical variables \label{Cat_class}</p>
-</div>
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/geology-map-2} \end{center}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth,height=0.8\textheight]{data/RF/CatClasses} 
+
+}
+
+\caption{Categorical variables \label{CatClass}}(\#fig:cat-class)
+\end{figure}
 
 \newpage
 
@@ -227,7 +237,7 @@ In this step, you will extract the values of the predictors at each location in 
 The final output represents the input dataset with dependent (LS = landslides) and independent (raster features) variables.
 
 
-```r
+``` r
 # Extract values from the raster dataset (features)
 LS_input <-extract(features, LS_vect, method="simple",  xy=TRUE)
 
@@ -252,7 +262,7 @@ A well-established procedure in ML is to split the input dataset into training, 
 -   The **testing dataset** is used in thein the prediction phase: results are predicted over these "new" observations (unused before) to provide an unbiased evaluation of the final model and to assess its performance.
 
 
-```r
+``` r
 # Shuffle the rows
 set.seed(123) # to ensure reproducibility 
 LS_input_sh<-LS_input [sample(nrow(LS_input), nrow(LS_input)), ] 
@@ -286,7 +296,7 @@ This values is used the optimize the values of the hyperparameters, by a trial a
 For the computation we introduce here the method proposed by @breiman_random_2001 and implemented in the R package `randomForest` [@RF_library].
 
 
-```r
+``` r
 # Set the seed of R‘s random number generator, 
 ## this is useful for creating simulations that can be reproduced.
 set.seed(123) 
@@ -302,7 +312,7 @@ Printing the results of RF allows you to gain insight into the outputs of the im
 The plot of the error rate is useful to estimate the decreasing values on the OOB and on the predictions (1==presence *vs* 0==absence) over increasing number of trees.
 
 
-```r
+``` r
 # Print the model setting
 print(RF_LS) 
 ```
@@ -322,7 +332,7 @@ print(RF_LS)
 ## 1  275 1787   0.1333657
 ```
 
-```r
+``` r
 # Show the predicted probability values
 RF.predict <- predict(RF_LS,type="prob")
 head(RF.predict) # 0 = absence ; 1 = presence
@@ -338,14 +348,16 @@ head(RF.predict) # 0 = absence ; 1 = presence
 ## 2075 0.16666667 0.8333333
 ```
 
-```r
+``` r
 # Plot the OOB error rate
 plot(RF_LS)  
 legend(x="topright", legend=c("perd 0", "pred 1", "OOB error"), 
  col=c("red", "green", "black"), lty=1:2, cex=0.8)
 ```
 
-<img src="05-RF_Cl_files/figure-html/RF-outputs-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/RF-outputs-1} \end{center}
 
 ### Model evaluation
 
@@ -355,7 +367,7 @@ The ROC curve is a graphical technique based on the plot of the percentage of co
 The AUC value lies between 0.5, denoting a bad classifier, and 1, denoting an excellent classifier, which, on the other hand, can indicate overfitting.
 
 
-```r
+``` r
 # Make predictions on the testing dataset
 RFpred_test <- predict(object = RF_LS, newdata = LS_test, type="prob")
 
@@ -370,9 +382,11 @@ plot(1-roc_test$specificities, roc_test$sensitivities, type = 'l', col = 'blue',
 lines(1-roc_oob$specificities, roc_oob$sensitivities, type = 'l', col = 'red')
 ```
 
-<img src="05-RF_Cl_files/figure-html/RF-val-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/RF-val-1} \end{center}
+
+``` r
 # Print AUC values
 roc_test
 roc_oob
@@ -384,7 +398,7 @@ You have now all the elements necessary to elaborate the final landslide suscept
 This can be achieved by making predictions (of presence only) based on the values of the predictor variables, which are stored into the multiple-raster named *features*, created above.
 
 
-```r
+``` r
 # Convert the input multiple raster to data frame 
 features_df<-as.data.frame(features, xy=TRUE, na.rm=TRUE) 
 
@@ -404,9 +418,11 @@ summary(scp_rast)
 plot(scp_rast)
 ```
 
-<img src="05-RF_Cl_files/figure-html/Scp-map-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/Scp-map-1} \end{center}
+
+``` r
 # Save all outputs
 ## this operation can take several minuts to run!
 save.image(file="LSM_RF.RData")
@@ -430,19 +446,21 @@ The authority can thus concentrate its resources for preventive actions on a giv
 Susceptibility maps are based on equal intervals, five classes (each 20%) in this case.
 
 
-```r
+``` r
 library("RColorBrewer")
 plot(scp_rast, xlab = "East [m]", ylab = "North [m]", main = "Landslides susceptibility map", col = rev(c('#a50026','#d73027','#f46d43','#fdae61','#fee08b','#d9ef8b')))
 ```
 
-<img src="05-RF_Cl_files/figure-html/equal-interval-map-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/equal-interval-map-1} \end{center}
 
 #### Quartile
 
 Breaks are chosen based on the summary statics: these values corresponds to the quartiles of the p-value distribution (values divided into four equal partitions).
 
 
-```r
+``` r
 brk<-c(0, 0.03, 0.14, 0.43, 1) 
 
 plot(scp_rast, xlab = "East [m]", ylab = "North [m]", 
@@ -450,7 +468,9 @@ plot(scp_rast, xlab = "East [m]", ylab = "North [m]",
      col = rev(c("brown", "orange", "yellow", "grey")), breaks=brk) 
 ```
 
-<img src="05-RF_Cl_files/figure-html/quartile-map-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/quartile-map-1} \end{center}
 
 #### Percentiles
 
@@ -459,7 +479,7 @@ For exaple, in this case the 20th percentile correspond to the p-value below wic
 The legend show the p-values correspondig to the percentile classes indicated below.
 
 
-```r
+``` r
 # Output predicted values are transformed to a vector
 pred.vect <- as.vector(scp_map[, 2])
 
@@ -473,7 +493,7 @@ qtl.pred
 ## 0.046 0.166 0.448 0.614 0.832
 ```
 
-```r
+``` r
 # and then extract the corresponding values
 qtl.int<- c(0,0.03,0.14,0.42,0.6,0.82,1)
 plot(scp_rast, xlab = "East [m]", ylab = "North [m]", 
@@ -481,7 +501,9 @@ plot(scp_rast, xlab = "East [m]", ylab = "North [m]",
      col = rev(c("brown", "red", "orange","yellow", "green", "grey")), breaks=qtl.int)
 ```
 
-<img src="05-RF_Cl_files/figure-html/percentile-map-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-RF_Cl_files/figure-latex/percentile-map-1} \end{center}
 
 ## Conclusions and further analyses
 

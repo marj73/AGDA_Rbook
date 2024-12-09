@@ -1,31 +1,26 @@
 ---
-bibliography: book.bib
+csl: "apa.csl"
 link-citations: true
-biblio-style: apalike
-csl: chicago-fullnote-bibliography.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
+bibliography: book.bib
 ---
 
 ```{r  global-options, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Spatio-Temporal Cluster Analysis of Geoenvironmental Processes 
+# Spatio-Temporal Cluster Analysis of GeoEnvironmental Processes {#kde}
 
 Spatio-temporal cluster analysis (ST clustering) is a powerful tool used to identify patterns and relationships in data that vary across both space and time.
-In the context of geo-environmental processes, this type of analysis can helps in understanding how environmental phenomena — such as wildfires, landslides, or flood events — are distributed geographically and how they evolve over time.
-By detecting clusters, researchers can uncover hotspots of activity, assess trends, and identify potential triggers or influencing factors, leading to more informed decision-making and targeted interventions in environmental management.
+In the context of geoenvironmental processes, this type of analysis can helps in understanding how environmental phenomena — such as wildfires, landslides, or flood events — are distributed geographically and how they evolve over time.
+By detecting clusters, researchers can uncover hotspots, assess trends, and identify potential triggers or influencing factors, leading to more informed decision-making and targeted interventions in environmental management.
 
 ## ST clustering for fire management
 
 The configuration of forest fires across space and time presents a complex pattern which significantly affects the forest environment and adjacent human developments.
-Statistical techniques designed for spatio-temporal random points can be utilized to identify a structure, recognize hot-spots and vulnerable areas, and address policy makers to prevention and forecasting measures.
+Statistical techniques designed for spatio-temporal random point processes can be utilized to identify a structure, recognize hot-spots and vulnerable areas, and address policy makers to prevention and forecasting measures.
 
 In this practical computing lab we consider the same case study as in the "Geographically Weighted Summary Statistics" lab.
-The main objective is to reveal if space and time act independently or whether neighboring events are also closer in time, interacting to generate spatio-temporal clusters.
+The main objective is to reveal if space and time act independently or whether neighboring events are also closer in time, interacting to generate ST clusters.
 The attribute that we will consider to achieve this goal is the starting date of fires events.
 To account for the different geographical distribution of fires in Portugal, events occurred in the Norther and Southern areas will be modeled separately.
 
@@ -58,7 +53,7 @@ The space-time K-function $K(s,t)$ can be considered as a bivariate function whe
 It is defined as the number of further events occurring within a distance $r$ and time $t$ from an arbitrary event.
 
 If there is no space-time interaction, $K(s,t)$ is equal to the product of the purely spatial and purely temporal K-function.
-Inversely, if space and time interact generating clusters, the difference between these two values is positive, where:
+Inversely, if space and time interact generating clusters, the difference $D(s,t)$ between these two values is positive, where:
 
 $$D(s,t)=K(s,t)-K(s)*K(t)$$
 
@@ -68,7 +63,7 @@ Thus, we can use the perspective 3D-plot of the function $D(s,t)$ to obtain a fi
 
 The Kernel Density Estimator (KDE) is a non-parametric descriptor tool widely applied in geosciences to elaborate smoothed density surfaces from spatial variables.
 A kernel function $K$ allows weighing up the contribution of each event, based on the relative distance of neighborings to the target.
-The parameter h\$, called bandwidth, controls the smoothness of the estimated kernel density.
+The parameter $h$, called bandwidth, controls the smoothness of the estimated kernel density.
 Finally, the kernel density function $f_h(x)$ is estimated by summing all the kernel functions $K$ computed at each point location $x$ and dividing the result by the total number of events ($n$): $$f_h(x) = \frac{1}{nh}\sum_{i=j}^{n}K(\frac{x-x_i}{h})$$
 
 The time extension of the kernel density estimator allows to compute the three-dimensional kernel density estimator which includes the spatio-temporal dimensions[@nakaya_visualising_2010].
@@ -77,7 +72,7 @@ In the present case study we apply a quadratic weighting kernel function, which 
 Regarding the bandwidth's value, we propose to consider the results of the spatio-temporal K-function as an indicator.
 Indeed, the distance values showing a maximum cluster behavior over the displayed perspective $D(s,t)$ plot can be attributed to the $h$-value, minimizing the problem of under- or over-smoothing due to an arbitrary choice of the bandwidth.
 
-## Computing lab: spatio-temporal clustering
+## Computing lab: ST clustering
 
 ### Load the libraries
 
@@ -132,12 +127,12 @@ hist(log10(FF$Area_ha)) # see the lab GWSS for more details
 
 For a better understanding of the phenomenon, events can be grouped according to the size of the burnt area and to their incidence in the northern and in the southern part of continental Portugal.
 
-### FF-subsets based on the burned areas' size
+### Forest fires subsets based on the size of the burned area
 
 Remember that fires of different size can have been induced by different drivers.
-Thus, in the following, we will investigate all the global cluster behavior of forest fires in Portugal considering the three subset separately.
+Thus, in the following, we will investigate all the global cluster behavior of forest fires in Portugal considering the three subsets separately.
 
-As you have seen in the lab GWSS, the following three classes can be defined based of the size of the burned areas:
+As you have seen in the lab GWSS, the following three classes can be defined based of the size of the burned area:
 
 -   *Small fires:* less than 15 ha
 -   *Medium fires:* between 15 ha and 100 ha
@@ -199,7 +194,7 @@ pSF+pMF+pLF
 
 ```
 
-### FF-subsets based on the geographical distribution
+### FF-subsets based on their geographical distribution
 
 In continental Portugal, the northern half of the country (above the Tagus River) is characterized by the predominance of forest and semi-natural areas, and by the development of the main cities with their sub-urban ares intermingled with wild land, which makes the northern area highly prone to forest fires.
 
@@ -214,7 +209,7 @@ ggplot ()+
   geom_sf(data=river, col="blue", size=2) +
   geom_sf(data=FFN, size=0.3, col="red") +
   geom_sf(data=FFS, size=0.3, col="orange") +
-  ggtitle("Forest foirest in the northern and souther area") +
+  ggtitle("Forest foirest in the northern and southern area") +
   theme(plot.title=element_text(hjust=0.5)) +
  coord_sf()
 
@@ -245,7 +240,7 @@ FFN_poly<-PTN_xy[, -c(3,4)]
 
 ```
 
-### Compute the space-time K-function
+### Compute the ST K-function
 
 We compute the space-time K-function for forest fires in the northern area.
 Since the computation can take a long time (about 20 mints), we propose you to load directly the output R object provided (*STK_North_10y*).
@@ -280,7 +275,7 @@ STK_North_10y <- readRDS("data/KDE/STK_North_10y.RData")
 str(STK_North_10y)
 ```
 
-### Assess the space-time clustering behavior
+### Assess the ST clustering behavior
 
 In the following section you will explore and plot the values of the three components produced as outputs of the function `stkhat`: the spatial K-function (`ks`), the temporal K-function (`kt`); the space-time K-function (`kst`).
 Then, you will plot the perspective 3D-plot of $D(s,t)$ to evaluate the space-time clustering behavior of forest fires in the present case study.
@@ -322,10 +317,10 @@ Dplot(STK_North_10y)
 title("Dplot Nothern Fires")
 ```
 
-### Compute the space-time Kernel Density Estimator
+### Compute the ST Kernel Density Estimator
 
-The multifaceted shape the D-Plot identify peaks of clustering a time interval of 3 year.
-In space, events are clustered at every distance, so in this case we use the maximum values (10 km).
+The multifaceted shape the D-Plot identify peaks of clustering at a time interval of 3 year.
+In space, events are clustered at every distance, so in this case we use the maximum distance-value (10 km).
 These two values are attributed to the bandwidth of the space-time KDE allowing to elaborate smoothed density maps.
 To this end, we use the function `kernel3d`**,** included in the library **spancs** [@Rowlingson_2024] too.
 
@@ -371,7 +366,7 @@ for (i in 1:24){
 
 This practical computing lab allowed you to asses the global cluster behavior of hazardous events, achieved by using the Ripley's k-function.
 In addition, we learned how smoothed density maps can be elaborated from punctual events, namely using the kernel density estimator.
-Both spatial and the temporal dimension have been considered in this case.
+Both the spatial and the temporal dimension have been considered in this case.
 As practical case study, you could explore the density distribution of forest fires events through Continental Portugal in the period 1990-2013.
 In the northern half of the country, hot spots are present almost on each investigated years, with a higher concentration in the northern areas.
 

@@ -1,15 +1,12 @@
 ---
 bibliography: book.bib
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
+csl: "taylor-and-francis-chicago-author-date.csl"
+link-citations: true
 ---
 
 
 
-# Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach
+# Defining Territorial Typologies Using Unsupervised Learning: A SOM Approach {#som}
 
 Urban expansion across Europe has accelerated in recent decades, significantly blurring the distinctions between urban and rural landscapes.
 The growing complexity and constant evolution of territorial dynamics require timely urban-rural typologies that systematically classify areas along the continuum from distinctly urban to distinctly rural.
@@ -51,7 +48,7 @@ To perform the analyses and visualize the results you have to load the following
 -   *colorpatch*: rendering methods (ggplot extensions)
 
 
-```r
+``` r
 library(kohonen)
 library(aweSOM)
 library(ggplot2)
@@ -65,17 +62,26 @@ As you can see from the description of the selected variables \autoref{Variables
 So, in the following step, we extract a subset of the most meaningful variables for the purpose of the present study.
 
 
-```r
+``` r
 knitr::include_graphics(c("images/Variables1.jpg", "images/Variables2.jpg"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="images/Variables1.jpg" alt="Variables description \label{Variables}" width="100%" height="100%" />
-<p class="caption">(\#fig:variables-1)Variables description \label{Variables}</p>
-</div><div class="figure" style="text-align: center">
-<img src="images/Variables2.jpg" alt="Variables description \label{Variables}" width="100%" height="100%" />
-<p class="caption">(\#fig:variables-2)Variables description \label{Variables}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,height=1\textheight]{images/Variables1} 
+
+}
+
+\caption{Variables description \label{Variables}}(\#fig:variables-1)
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,height=1\textheight]{images/Variables2} 
+
+}
+
+\caption{Variables description \label{Variables}}(\#fig:variables-2)
+\end{figure}
 
 
 
@@ -84,7 +90,7 @@ knitr::include_graphics(c("images/Variables1.jpg", "images/Variables2.jpg"))
 Histograms can be used to show the frequency distribution of the variables and help detect patterns, such as skewness, outliers, and the range of values. Similarly, box plots summarize data using quartiles, helping to identify central tendency, spread, and outliers. Together, these visual tools allow to asses if variables have comparable ranges and help determine if data transformation is needed.
 
 
-```r
+``` r
 # Plot variables' frequency distribution
 for(i in 3:ncol(subset2020)) {      
     hist((subset2020[ , i]),  main=colnames(subset2020[i]))
@@ -92,7 +98,7 @@ for(i in 3:ncol(subset2020)) {
 ```
 
 
-```r
+``` r
 # Plot variables' frequency distribution
 for(i in 3:ncol(subset2020)) {      
     boxplot((subset2020[ , i]),  main=colnames(subset2020[i]))
@@ -104,7 +110,7 @@ To make the variables range comparable, we propose to operate the max-min normal
 However, the min-max transformation is sensitive to outliers, as extreme values can distort the interpretation by compressing the range. To mitigate this, values beyond the upper and lower 5th percentiles will be capped at these thresholds before operating the max-min normalization. 
 
 
-```r
+``` r
 # Define the general function to detect outlier
 replace_outliers <- function(df, lower_quantile_value, upper_quantile_value) {
   replaced_df <- df
@@ -169,7 +175,7 @@ summary (df2020_out_repl)
 
 
 
-```r
+``` r
 # Define the general function for min-max normalization
 minMax <- function(x) {
   (x - min(x)) / (max(x) - min(x))
@@ -236,12 +242,12 @@ For the computation we introduce here the method proposed by [@kohonen_self-orga
 Before running SOM, you have to transform the data frame to the format matrix and create the grid of output units.
 
 
-```r
+``` r
 mx2020<-as.matrix(dfnorm2020_out_repl) # max-min
 ```
 
 
-```r
+``` r
 # Gird size 18x13 units
 som_grid <- somgrid(xdim = 20, ydim=15) 
 ```
@@ -250,7 +256,7 @@ The general R function `set.seed` is used for creating simulations of random obj
 The `rlen` indicates the number of times the complete data set will be presented to the network, while for the other parameters we will keep the default values.
 
 
-```r
+``` r
 # Use max-min data transformation
 set.seed(123) 
 
@@ -276,14 +282,16 @@ In particular we will explore the following:
 -   **Percentage of explained variance**: similar to other clustering methods, the share of total variance that is explained by the clustering (equal to 1 minus the ratio of quantization error to total variance). Higher is better.
 
 
-```r
+``` r
 # Evaluate rlen
 plot(SOM2020, type="changes")
 ```
 
-<img src="07-SOM_files/figure-html/SOM-quality-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{07-SOM_files/figure-latex/SOM-quality-1} \end{center}
+
+``` r
 # Evaluate the results
 QEM<-somQuality(SOM2020, dfnorm2020_out_repl) 
 
@@ -295,7 +303,7 @@ QEM$err.quant # Quantization error
 ## [1] 0.311374
 ```
 
-```r
+``` r
 QEM$err.varratio # % explained variance
 ```
 
@@ -312,7 +320,7 @@ The main graphical outputs of SOM are the node counts, the neighborhood distance
 -   **Heatmaps:** dispaly the distribution of each input variable, associated to each input vectors, across the SOM grid.
 
 
-```r
+``` r
 # Create a color palette
 coolBlueHotRed <- function(n, alpha = 1) {rainbow(n, end=4/6, alpha=alpha)[n:1]}
 
@@ -326,13 +334,15 @@ plot(SOM2020, type="count", main="Node counts", palette.name=coolBlueHotRed)
 plot(SOM2020, type="dist.neighbours", main = "Neighbour dist.")
 ```
 
-<img src="07-SOM_files/figure-html/outputs-SOM-maxmin-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-SOM_files/figure-latex/outputs-SOM-maxmin-1} \end{center}
 
 Side-by-side heatmaps provide a visual comparison, enabling researchers to identify relationships within the high-dimensional input space \autoref{Heatmaps}.
 This approach helps assess whether the input variables show similar patterns or complementary trends.
 
 
-```r
+``` r
 # Plot heatmaps for selected variables
 for (i in 1:18) 
   {
@@ -342,14 +352,18 @@ plot(SOM2020, type = "property", property = getCodes(SOM2020)[,i],
 ```
 
 
-```r
+``` r
 knitr::include_graphics("images/Heatmaps.jpg")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="images/Heatmaps.jpg" alt="Heatmaps \label{Heatmaps}" width="70%" height="70%" />
-<p class="caption">(\#fig:jpg1)Heatmaps \label{Heatmaps}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth,height=0.7\textheight]{images/Heatmaps} 
+
+}
+
+\caption{Heatmaps \label{Heatmaps}}(\#fig:jpg1)
+\end{figure}
 
 ## Hierarchical clustering
 
@@ -357,7 +371,7 @@ The SOM units were ultimately grouped into a smaller set of primary clusters, re
 Hierarchical clustering was applied to generate these final partitions: SOM units are iteratively merged based on Euclidean distance until the desired number of main clusters (six in our case) is achieved.
 
 
-```r
+``` r
 #Run hierarchical clustering
 CV2020 <- getCodes(SOM2020) # Extract codebook vectors
 
@@ -367,7 +381,7 @@ cls2020 <- cutree(hclust(dist(CV2020)), 6)
 We can display the SOM-grid using different colors for each one of the six final main clusters.
 
 
-```r
+``` r
 # Color palette definition.
 # NB: If you change the number of hierarchical clustering, remember to set the number of colors accordingly.
 
@@ -377,10 +391,12 @@ plot(SOM2020, type="mapping", pchs="", bgcol = map_palette[cls2020], main = "Clu
 legend("right", legend = unique(cls2020), fill = map_palette, title = "Cluster Colors", cex=0.8)
 ```
 
-<img src="07-SOM_files/figure-html/clustermap-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+\begin{center}\includegraphics{07-SOM_files/figure-latex/clustermap-1} \end{center}
+
+
+``` r
 #Assign the cluster number (based on hierarchical clustering) to each unit
 
 clasgn <- cls2020[SOM2020$unit.classif]
@@ -400,7 +416,7 @@ Alternatively , you can import the final table with clusters into a GIS and join
 You need only two columns: the code identifying each municipality ("BFS_nummer") and the cluster number (hc).
 
 
-```r
+``` r
 #Load the following packages needed for visualization
 library(st)
 library(sf)
@@ -409,7 +425,7 @@ library(dplyr)
 ```
 
 
-```r
+``` r
 # Load the shapefile data
 CH_outline <- st_read("data/SOM/Municiplities.shp")
 
@@ -420,7 +436,7 @@ ggplot() +
   coord_sf()
 ```
 
-```r
+``` r
 # Rename the column
 colnames(clsnorm)[20] <- "BFS_NUMMER"
 
@@ -432,7 +448,7 @@ z$cluster <- as.numeric(z$hc)
 ```
 
 
-```r
+``` r
 # Mapping the clusters using ggplot (as in a GIS)
 
 CH_cluster <- ggplot(data = z) + # Original data
@@ -461,7 +477,9 @@ ggsave("CH_typologies.jpg")
 CH_cluster
 ```
 
-<img src="07-SOM_files/figure-html/mapping-clusters-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-SOM_files/figure-latex/mapping-clusters-1} \end{center}
 
 ## Clusters characterization
 
@@ -470,7 +488,7 @@ To interpret the final main clusters in therms of their geo-demographic characte
 Box-plot is a standardized way to display a dataset based on the five-number summary statistics: the minimum, the maximum, the sample median, and the first and third quartiles (i.e., the median of the lower half (25%) and the median of the upper half (75%) of the dataset).
 
 
-```r
+``` r
 # Creates an empty list object that will be filled by the loop
 cls20M <- list() 
 
@@ -488,7 +506,7 @@ for (i in 1:6) {boxplot ((clsvar20M[[i]]), main=paste("Cluster", i), mar=c(8,3,3
 To better investigate the values assumed by each class of variables withing the different clusters, you can group them by category.
 
 
-```r
+``` r
 # Box plot by categories: "Physical space"
 
 clsvar20M <- lapply(cls20M, "[", c(1:5)) 
@@ -498,13 +516,17 @@ par(mfrow=c(2,4), mar=c(7,3,3,1), cex.axis=0.7)
 for (i in 1:6) {boxplot ((clsvar20M[[i]]), main=paste("Cluster", i),  las=2)}
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-SOM_files/figure-html/boxplot-clsM-PhisicalSpace-1.png" alt="Physical space" width="672" />
-<p class="caption">(\#fig:boxplot-clsM-PhisicalSpace)Physical space</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-SOM_files/figure-latex/boxplot-clsM-PhisicalSpace-1} 
+
+}
+
+\caption{Physical space}(\#fig:boxplot-clsM-PhisicalSpace)
+\end{figure}
 
 
-```r
+``` r
 # Box plot by categories: "Demographics"
 
 clsvar20M <- lapply(cls20M, "[", c(6:13)) 
@@ -514,13 +536,17 @@ par(mfrow=c(2,4), mar=c(7,3,3,1), cex.axis=0.7)
 for (i in 1:6) {boxplot ((clsvar20M[[i]]), main=paste("Cluster", i),  las=2)}
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-SOM_files/figure-html/boxplot-clsM-Deographic-1.png" alt="Demographics" width="672" />
-<p class="caption">(\#fig:boxplot-clsM-Deographic)Demographics</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-SOM_files/figure-latex/boxplot-clsM-Deographic-1} 
+
+}
+
+\caption{Demographics}(\#fig:boxplot-clsM-Deographic)
+\end{figure}
 
 
-```r
+``` r
 # Box plot by categories: "Socio-economics"
 
 clsvar20M <- lapply(cls20M, "[", c(14:18)) 
@@ -530,10 +556,14 @@ par(mfrow=c(2,4), mar=c(7,3,3,1), cex.axis=0.7)
 for (i in 1:6) {boxplot ((clsvar20M[[i]]), main=paste("Cluster", i),  las=2)}
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-SOM_files/figure-html/boxplot-clsM-SocioEconomic-1.png" alt="Socio-economics" width="672" />
-<p class="caption">(\#fig:boxplot-clsM-SocioEconomic)Socio-economics</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{07-SOM_files/figure-latex/boxplot-clsM-SocioEconomic-1} 
+
+}
+
+\caption{Socio-economics}(\#fig:boxplot-clsM-SocioEconomic)
+\end{figure}
 
 ## Conclusions
 

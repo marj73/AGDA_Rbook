@@ -1,17 +1,12 @@
 ---
 bibliography: book.bib
+csl: "taylor-and-francis-chicago-author-date.csl"
 link-citations: true
-biblio-style: apalike
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
 ---
 
 
 
-# Introduction to R
+# Introduction to R  {#intro}
 
 ## R Language
 
@@ -80,25 +75,33 @@ The fundamental or atomic data in R Programming can be:
 -   **factors**: a label with a limited number of categories
 -   **logical**: true/false
 
-<div class="figure" style="text-align: center">
-<img src="images/Rvariablesdata.jpg" alt="Data Types in R \label{data_Type}" width="100%" height="80%" />
-<p class="caption">(\#fig:img1)Data Types in R \label{data_Type}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth,height=0.8\textheight]{images/Rvariablesdata} 
+
+}
+
+\caption{Data Types in R \label{data_Type}}(\#fig:img1)
+\end{figure}
 
 ### Data structure in R
 
 R's base data structures can be organised by their dimensionality (1d, 2d, or nd) and whether they are homogeneous (all contents must be of the same type) or heterogeneous (the contents can be of different types).
 This gives rise to the four data structures most often used in data analysis:
 
-<div class="figure" style="text-align: center">
-<img src="images/data_type.jpg" alt="Data structures in R \label{data_str}" width="50%" height="60%" />
-<p class="caption">(\#fig:img2)Data structures in R \label{data_str}</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth,height=0.6\textheight]{images/data_type} 
+
+}
+
+\caption{Data structures in R \label{data_str}}(\#fig:img2)
+\end{figure}
 
 A **Vector** is a one-dimensional structure winch can contain object of one type only: numerical (integer and double), character, and logical.
 
 
-```r
+``` r
 # Investigate vector's types:
 
 v1 <- c(0.5, 0.7); v1; typeof(v1)
@@ -112,7 +115,7 @@ v1 <- c(0.5, 0.7); v1; typeof(v1)
 ## [1] "double"
 ```
 
-```r
+``` r
 v2 <-c(1:10); v2; typeof(v2)
 ```
 
@@ -124,7 +127,7 @@ v2 <-c(1:10); v2; typeof(v2)
 ## [1] "integer"
 ```
 
-```r
+``` r
 v3 <- c(TRUE, FALSE); v3; typeof(v3)
 ```
 
@@ -136,7 +139,7 @@ v3 <- c(TRUE, FALSE); v3; typeof(v3)
 ## [1] "logical"
 ```
 
-```r
+``` r
 v4 <- c("Swiss", "Itay", "France", "Germany"); v4; typeof(v4)
 ```
 
@@ -149,7 +152,7 @@ v4 <- c("Swiss", "Itay", "France", "Germany"); v4; typeof(v4)
 ```
 
 
-```r
+``` r
 #Create a sequence from 0 to 5 with a step of 0.5:
 
 v5 <- seq(1, 5, by=0.5); v5; typeof(v5)
@@ -163,7 +166,7 @@ v5 <- seq(1, 5, by=0.5); v5; typeof(v5)
 ## [1] "double"
 ```
 
-```r
+``` r
 length(v5)
 ```
 
@@ -171,7 +174,7 @@ length(v5)
 ## [1] 9
 ```
 
-```r
+``` r
 summary(v5)
 ```
 
@@ -181,7 +184,7 @@ summary(v5)
 ```
 
 
-```r
+``` r
 #Extract the third element of the vector
 v5[3]
 ```
@@ -190,7 +193,7 @@ v5[3]
 ## [1] 2
 ```
 
-```r
+``` r
 #Exclude the third element from the vector and save as new vector
 v5[-3]
 ```
@@ -199,7 +202,7 @@ v5[-3]
 ## [1] 1.0 1.5 2.5 3.0 3.5 4.0 4.5 5.0
 ```
 
-```r
+``` r
 w5<-v5[-3]; w5
 ```
 
@@ -211,7 +214,7 @@ A **Matrix** is a two-dimensional structure winch can contain object of one type
 The function `matrix()` can be used to construct matrices with specific dimensions.
 
 
-```r
+``` r
 # Matrix of elements equal to "zero" and dimension 2x5 
 m1<-matrix(0,2,5); m1  #(two rows by five columns)
 ```
@@ -222,7 +225,7 @@ m1<-matrix(0,2,5); m1  #(two rows by five columns)
 ## [2,]    0    0    0    0    0
 ```
 
-```r
+``` r
 # Matrix of integer elements (1 to 12, 3x4) 
 m2<-matrix(1:12, 3,4); m2 
 ```
@@ -234,7 +237,7 @@ m2<-matrix(1:12, 3,4); m2
 ## [3,]    3    6    9   12
 ```
 
-```r
+``` r
 # Extract the second row
 m2[2, ]
 ```
@@ -243,7 +246,7 @@ m2[2, ]
 ## [1]  2  5  8 11
 ```
 
-```r
+``` r
 # Extract the third column
 m2[,3]
 ```
@@ -252,7 +255,7 @@ m2[,3]
 ## [1] 7 8 9
 ```
 
-```r
+``` r
 # Extract the the second element of the third column
 m2[2,3]
 ```
@@ -272,7 +275,7 @@ This can be simply accomplished by using the commands `str()` to explore the str
 For numerical vectors the command `hist()` can be used to plot the basic histogram of the given values.
 
 
-```r
+``` r
 # Create the vectors with the variables
 cities <- c("Berlin", "New York", "Paris", "Tokyo")
 area <- c(892, 1214, 105, 2188)
@@ -281,7 +284,7 @@ continent <- c("Europe", "Norh America", "Europe", "Asia")
 ```
 
 
-```r
+``` r
 # Concatenate the vectors into a new data frame
 df1 <- data.frame(cities, area, population, continent)
 df1
@@ -295,7 +298,7 @@ df1
 ## 4    Tokyo 2188       12.9         Asia
 ```
 
-```r
+``` r
 #Add a column (e.g., language spoken) using the command "cbind"
 df2 <- cbind (df1, "Language" = c ("German", "English", "Freanch", "Japanese"))
 df2
@@ -310,7 +313,7 @@ df2
 ```
 
 
-```r
+``` r
 #Explore the data frame
 str(df2) # see the structure
 ```
@@ -324,7 +327,7 @@ str(df2) # see the structure
 ##  $ Language  : chr  "German" "English" "Freanch" "Japanese"
 ```
 
-```r
+``` r
 summary(df2) # compute basic statistics
 ```
 
@@ -345,7 +348,7 @@ summary(df2) # compute basic statistics
 ## 
 ```
 
-```r
+``` r
 # Use the symbol "$" to address a particular column
 pop<-(df2$population)
 pop
@@ -355,8 +358,10 @@ pop
 ## [1]  3.4  8.1  2.1 12.9
 ```
 
-```r
+``` r
 hist(pop) # plot the histogram
 ```
 
-<img src="01-IntrotoR_files/figure-html/data-exp-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{01-IntrotoR_files/figure-latex/data-exp-1} \end{center}

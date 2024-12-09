@@ -1,19 +1,14 @@
 ---
-bibliography: book.bib
-csl: apa.csl
+csl: "apa.csl"
 link-citations: true
-editor_options:
-  markdown:
-    wrap: sentence
-    urlcolor: blue
-output: pdf_document
+bibliography: book.bib
 ---
 
 ```{r  global-options, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.align="center")
 ```
 
-# Predictive Mapping of Natural Hazards Using Random Forest 
+# Predictive Mapping of Natural Hazards Using Random Forest {#global-rf}
 
 Random Forest (RF) is a robust and widely-used machine learning algorithm particularly suited for predictive mapping in the context of natural hazards and susceptibility assessments.
 It operates by constructing multiple decision trees during training, and then aggregating their predictions to improve accuracy and generalizability [@breiman_random_2001].
@@ -109,8 +104,6 @@ plot(Lake, col="lightblue", add=TRUE)
 plot(LS_vect, col=LS_pa$LS, pch=20, cex=0.5, add=TRUE)
 ```
 
-![](http://127.0.0.1:18549/chunk_output/BE976A08f99d29bf/202F00B0/c53949tka16ee/000014.png)
-
 #### Predictor variables
 
 Selecting predictive variables is a key stage in landslide susceptibility modelling when using a data-driven approach.
@@ -191,8 +184,8 @@ plot(geology)
 plot(landCover)
 ```
 
-```{r cat_class, fig.cap="Categorical variables \\label{Cat_class}", dpi=300, out.width="80%", out.height="80%", fig.align="center", echo = FALSE}
-knitr::include_graphics("data/RF/Cat_classes.png")
+```{r cat-class, fig.cap="Categorical variables \\label{CatClass}", dpi=300, out.width="80%", out.height="80%", fig.align="center", echo = FALSE}
+knitr::include_graphics("data/RF/CatClasses.png")
 ```
 
 \newpage

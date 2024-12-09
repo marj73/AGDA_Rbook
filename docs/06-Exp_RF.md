@@ -1,15 +1,12 @@
 ---
 bibliography: book.bib
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
+csl: "taylor-and-francis-chicago-author-date.csl"
+link-citations: true
 ---
 
 
 
-# Interpretability & Explainability with Random Forest 
+# Interpretability & Explainability with Random Forest {#local-rf}
 
 In the world of machine learning, interpretability and explainability are two therms commonly used to describe the extent to which an algorithm's behavior can be understood.
 The distinction between them lies in their focus and depth.
@@ -64,7 +61,7 @@ Loading the workspace means to restore this saved state, bringing back all the p
 Although machine learning algorithms are often considered as a black box, with RF is possible to plot a sample tree (selected randomly) to analyse its structure and investigate how decisions have been made.
 
 
-```r
+``` r
 library("party")
 
 x <- ctree(LS~., data=LS_train)
@@ -79,13 +76,15 @@ The Gini index measures the probability of incorrectly classifying a randomly ch
 The relative importance of the predictor variables can be ranked based on the increasing values of both these scores: the higher the value, the more important the variable.
 
 
-```r
+``` r
 # Display the plot with the relative importance of each variable
 importance(RF_LS)
 varImpPlot(RF_LS)
 ```
 
-<img src="06-Exp_RF_files/figure-html/var-imp-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/var-imp-1} \end{center}
 
 ### Partial dependence plot
 
@@ -94,7 +93,7 @@ PDP provides a graphical depiction of the marginal effect of each variable on th
 Positive values are associated with the probability of occurrence of the phenomena (i.e., landslides presence), while negative vales indicate its absence.
 
 
-```r
+``` r
 #Compute PDP for all the predictor variables 
 
 # Slope
@@ -103,70 +102,86 @@ partialPlot(RF_LS, LS_train, x.var = slope, rug = TRUE,
             main = "", ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-1} \end{center}
+
+``` r
 # Elevation
 partialPlot(RF_LS, LS_train ,x.var = DEM, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Elevation [m]", 
             main = "",ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-2.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-2} \end{center}
+
+``` r
 # Profile curvature
 partialPlot(RF_LS, LS_train, x.var = profCurv, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Profile curvature [1/m]", 
             main = "", ylab = "PDP", xlim = c(-0.1,0.1))
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-3.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-3} \end{center}
+
+``` r
 # Plan Curvature
 partialPlot(RF_LS, LS_train, x.var = planCurv, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Plan curvature [1/m]", 
             main = "", ylab = "PDP", xlim = c(-0.1,0.1))
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-4.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-4} \end{center}
+
+``` r
 # Distance to road
 partialPlot(RF_LS, LS_train, x.var = distRoad, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Distance to road [m]", 
             main = "", ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-5.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-5} \end{center}
+
+``` r
 # Topographic wetness index
 partialPlot(RF_LS, LS_train, x.var = TWI, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "TWI [-]", 
             main = "", ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-6.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-6} \end{center}
+
+``` r
 # Geology
 partialPlot(RF_LS, LS_train, x.var = geology, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Geology", 
             main = "", ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-7.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-7} \end{center}
+
+``` r
 # Land cover
 partialPlot(RF_LS, LS_train, x.var = landCover, rug = TRUE, 
             which.class = RF_LS$classes[2],xlab= "Land Cover",
             main = "", ylab = "PDP")
 ```
 
-<img src="06-Exp_RF_files/figure-html/par-plot-8.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/par-plot-8} \end{center}
 
 ## Local feature importance
 
@@ -242,7 +257,7 @@ The function `grf` fitting a local version of the RF algorithm, has been impleme
 ```
 
 
-```r
+``` r
 Coords<-LS_train[,9:10] # define coordinates
 
 # Run GRF
@@ -285,7 +300,7 @@ gwRF_LS<-grf(LSregr~distRoad+DEM+landCover+TWI+planCurv+profCurv+slope+geology, 
 ## geology     0 4.923056 0.2181370 0.3916300
 ```
 
-```r
+``` r
 saveRDS(gwRF_LS, "gwRF_LS.rds")
 ```
 
@@ -295,7 +310,7 @@ Based on the results of the GRF, we can plot of the variable importance ranking 
 Values came from "`Global ML Model Summary`" --\> "`Importance`"
 
 
-```r
+``` r
 # Create a data frame with variable names and importance values
 variable_importance <- data.frame (
   Variable = c("distRoad", "DEM", "landCover", "TWI", "planCurv", "profCurv", "slope", "geology"),
@@ -313,14 +328,16 @@ ggplot(data = variable_importance, aes(x = Variable, y = Importance, fill = Colo
   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better readability
 ```
 
-<img src="06-Exp_RF_files/figure-html/Global-Var-Imp-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/Global-Var-Imp-1} \end{center}
 
 ### Local feature importance mapping
 
 We can display the local feature importance scores for the two variables that are globally most important, the slope and the distance to road, with the output values mapped over the geographic space.
 
 
-```r
+``` r
 # Create a data frame with the values of the local variables importance and the coordinates for each location
 gwRF_LS_var<-gwRF_LS$Local.Variable.Importance
 gwRF_LS_var_XY<-cbind(gwRF_LS_var,LS_train$x,LS_train$y ) # add coordinates
@@ -343,7 +360,7 @@ str(gwRF_LS_var_XY)
 ##  $ Y        : num  145400 154500 148400 168900 156800 ...
 ```
 
-```r
+``` r
 library(sf) #for spatial data operations
 # Convert vector to sf (simple feature)
 Vaud<-vect("data/RF/Vaud_CH.shp")
@@ -363,7 +380,7 @@ print(brkInt)
 ## [1] 0.00 0.41 0.99 1.61 2.47 4.75
 ```
 
-```r
+``` r
 #natural breaks (fisher)
 
 ggplot() +
@@ -376,10 +393,12 @@ ggplot() +
     geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
 ```
 
-<img src="06-Exp_RF_files/figure-html/Slope_Imp-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/Slope_Imp-1} \end{center}
+
+
+``` r
 # Output predicted values are transformed to a vector
 pred.vect <- as.vector(gwRF_LS$Local.Variable.Importance$distRoad)
  
@@ -392,7 +411,7 @@ print(brkInt) # print breaks
 ## [1] 0.00 0.39 1.06 2.08 3.48 5.06
 ```
 
-```r
+``` r
 #natural breaks (fisher)
 
 ggplot() +
@@ -405,14 +424,16 @@ ggplot() +
     geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
 ```
 
-<img src="06-Exp_RF_files/figure-html/distRoad-Imp-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/distRoad-Imp-1} \end{center}
 
 ### Local R squared
 
 The Local R-squared value represents the strength of the correlations of the local model on the predictor variables and ranges from 0 to 1.
 
 
-```r
+``` r
 Rsq<-gwRF_LS$LGofFit$LM_Rsq100
 Rsq_XY<-as.data.frame(cbind(Rsq,LS_train$x,LS_train$y)) # add coordinates
 colnames(Rsq_XY)[2]<- "X"
@@ -427,7 +448,7 @@ str(Rsq_XY)
 ##  $ Y  : num  145400 154500 148400 168900 156800 ...
 ```
 
-```r
+``` r
 ggplot () +
   geom_point(data = Rsq_XY, aes(x = X, y = Y, colour = Rsq), size = 1)+ 
   scale_color_gradientn(colors = c("white", "yellow","red", "blue"))+
@@ -436,7 +457,9 @@ ggplot () +
   geom_sf(data = Vaud_sf, fill = "transparent", color = "black", size=2) #overlap borders
 ```
 
-<img src="06-Exp_RF_files/figure-html/local-R2-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-Exp_RF_files/figure-latex/local-R2-1} \end{center}
 
 ## Conclusions and further analyses
 

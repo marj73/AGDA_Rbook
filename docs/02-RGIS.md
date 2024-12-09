@@ -1,43 +1,32 @@
 ---
 bibliography: book.bib
+csl: "taylor-and-francis-chicago-author-date.csl"
 link-citations: true
-biblio-style: apalike
-csl: apa.csl
-editor_options: 
-  markdown: 
-    wrap: sentence
-    urlcolor: blue
 ---
 
 
 
-# Basic operation with geodata in R 
+
+# Basic operations with geodata in R {#geodata}
 
 ## Introduction
 
-Geodata, or geospatial data, refers to features associated with a specific location on the Earth's surface.
-Geodata can be in various forms and is often used in Geographic Information Systems (GIS) for mapping and analysis.
-The two key components characterizing geodata are the **spatial component** and **attributes**.
-The spatial component specifies the location and shape of the features, with different levels of detail, while attributes describe their characteristics.
+Geodata, or geospatial data, refers to features associated with a specific location on the Earth's surface. Geodata can be in various forms and is often used in Geographic Information Systems (GIS) for mapping and analysis. The two key components characterizing geodata are the **spatial component** and **attributes**. The spatial component specifies the location and shape of the features, with different levels of detail, while attributes describe their characteristics.
 
 The two basic formats used to represent the spatial component of geodata are:
 
-1.  *Vector*: this format uses points, lines, and polygons to identify each individual features.
-2.  *Raster*: this format uses a regular grid of pixels to represent the global geographic context.
+1.  **Vector**: this format uses points, lines, and polygons to identify each individual features.
+2.  **Raster**: this format uses a regular grid of pixels to represent the global geographic context.
 
-In addition, *attribute tables* are used to store the characteristics associated with the geospatial features.
+In addition, **attribute tables** are used to store the characteristics associated with the geospatial features.
 
-The GIS software are specifically designed to help user to edit, manage, analyze, and map geodata.
-To make working with geodata easier, several packages have been developed in R.
-These packages allow users to handle geodata directly in R computing environment, without needing separate GIS software.
+The GIS software are specifically designed to help user to edit, manage, analyze, and map geodata. To make working with geodata easier, several packages have been developed in R. These packages allow users to handle geodata directly in R computing environment, without needing separate GIS software.
 
 In this chapter, we introduce the basic functions allowing to work with geodata in the pre-processing and post-processing phase of a pipeline in geomodeling.
 
 ## Plotting vector dataset
 
-The spatial component of geodata uses geometric primitives like point, line, and polygon to represent the single features.
-Each feature in a geodataset is associated with various attributes providing detailed quantitative and qualitative information.
-A single geodataset includes features of the same type, represented by using the same class of primitive.
+The spatial component of geodata uses geometric primitives like point, line, and polygon to represent the single features. Each feature in a geodataset is associated with various attributes providing detailed quantitative and qualitative information. A single geodataset includes features of the same type, represented by using the same class of primitive.
 
 The three basic **geometric vector primitives** have the following characteristics:
 
@@ -47,18 +36,15 @@ The three basic **geometric vector primitives** have the following characteristi
 
 ### Package ***sf*** for vector dataset
 
-The package **sf** [@Pebesma_2023; @Pebesma_2018] has been designed to work with vector data as "simple features" in R.
-Each feature is represented by one row in the data frame, with attributes stored as columns and spatial information stored in a special geometry column.
+The package **sf** [@Pebesma_2023; @Pebesma_2018] has been designed to work with vector data as "simple features" in R. Each feature is represented by one row in the data frame, with attributes stored as columns and spatial information stored in a special geometry column.
 
 
-```r
+``` r
 # Load the library sf 
 library(sf)
 ```
 
-As a toy example, we will work with the geodataset of administrative boundaries in the Canton of Vaud (Switzerland).
-This dataset is available in shapefile format, one of the most widely used file formats for vector geospatial data.
-The field "Munics" represents the municipalities.
+As a toy example, we will work with the geodataset of administrative boundaries in the Canton of Vaud (Switzerland). This dataset is available in shapefile format, one of the most widely used file formats for vector geospatial data. The field "Munics" represents the municipalities.
 
 A **shapefile** includes multiple files allowing to store different kind of objects:
 
@@ -67,22 +53,18 @@ A **shapefile** includes multiple files allowing to store different kind of obje
 -   *\*shx*: shape index format, an index file for the geometry data.
 -   *\*prj*: the coordinate reference systems, defining how the geometries are projected on the Earth's surface.
 
-To read a shapefile, you only need to specify the file name with ".shp" extension.
-However, it is important to have all related files in the same directory to ensures that the shapefile is read correctly and all necessary information is available for the analysis.
+To read a shapefile, you only need to specify the file name with ".shp" extension. However, it is important to have all related files in the same directory to ensures that the shapefile is read correctly and all necessary information is available for the analysis.
 
-Shapefiles can be imported and converted as sf-objects using the command `st_read()`.
-By setting the argument `quiet = FALSE` suppresses the output from the console when importing geodata.
+Shapefiles can be imported and converted as sf-objects using the command `st_read()`. By setting the argument `quiet = FALSE` suppresses the output from the console when importing geodata.
 
 
-```r
+``` r
 # Load dataset
 vaud <- st_read("data/RGIS/Vaud.shp", quiet = FALSE)
 ```
 
 ```
-## Reading layer `Vaud' from data source 
-##   `Z:\FAC\FGSE\IDYST\mtonini1\default\D2c\AGDA\AGDA_Rbook\data\RGIS\Vaud.shp' 
-##   using driver `ESRI Shapefile'
+## Reading layer `Vaud' from data source `C:\AGDA_Rbook\data\RGIS\Vaud.shp' using driver `ESRI Shapefile'
 ## Simple feature collection with 315 features and 4 fields
 ## Geometry type: POLYGON
 ## Dimension:     XY
@@ -90,7 +72,7 @@ vaud <- st_read("data/RGIS/Vaud.shp", quiet = FALSE)
 ## Projected CRS: CH1903+ / LV95
 ```
 
-```r
+``` r
 # Inspect the attribute table 
 str(vaud)
 ```
@@ -111,40 +93,43 @@ str(vaud)
 
 ### Plot vector features
 
-Basic maps can be created with the command `plot()`.
-By default this creates a multi-panel plot: one plot for each variable included in the geodata (corresponding to each column).
-Otherwise, you can specify the name of variable that you wish to display.
+Basic maps can be created with the command `plot()`. By default this creates a multi-panel plot: one plot for each variable included in the geodata (corresponding to each column). Otherwise, you can specify the name of variable that you wish to display.
 
 
-```r
+``` r
 # Basic plot (diplay all the variables)
 plot(vaud) 
 ```
 
-<img src="02-RGIS_files/figure-html/simple-plot-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/simple-plot-1} \end{center}
+
+``` r
 # Display each municipality using single color (attributed randomly)
 plot(vaud["Munics"], main="Municipal boundaries")
 ```
 
-<img src="02-RGIS_files/figure-html/simple-plot-2.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/simple-plot-2} \end{center}
 
 A legend with a continuous color scale is produced by default if the object to be plotted is numeric.
 
 
-```r
+``` r
 # Plot based on the value "area" 
 plot(vaud["Shape_Area"], reset = FALSE)
 ```
 
-<img src="02-RGIS_files/figure-html/plot-area-1.png" width="672" style="display: block; margin: auto;" />
-
-Different operations can be performed to customize the map.
-For instance, you can highlight the municipality of Lausanne in red to show its geographic correspondence, keeping all the other municipalities grey.
 
 
-```r
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/plot-area-1} \end{center}
+
+Different operations can be performed to customize the map. For instance, you can highlight the municipality of Lausanne in red to show its geographic correspondence, keeping all the other municipalities grey.
+
+
+``` r
 # Extract the boundary of Lausanne
 Lausanne = st_union(vaud[vaud$Munics == "Lausanne", ])
 
@@ -153,16 +138,15 @@ plot(vaud["Munics"],col="grey", reset = FALSE, main="Canton Vaud, Lausanne")
 plot(Lausanne, add = TRUE, col = "red")
 ```
 
-<img src="02-RGIS_files/figure-html/plot-Lausanne-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/plot-Lausanne-1} \end{center}
 
 ## Plotting raster dataset
 
-Raster data are different from vector data in that they are referenced to a regular grid of regular (usually square) cells, called pixels.
-The spatial characteristics of a raster dataset are defined by its spatial resolution (the height and width of each cell) and its origin (typically the upper left corner of the raster grid, which is associated with a location in a coordinate reference system).
+Raster data are different from vector data in that they are referenced to a regular grid of regular (usually square) cells, called pixels. The spatial characteristics of a raster dataset are defined by its spatial resolution (the height and width of each cell) and its origin (typically the upper left corner of the raster grid, which is associated with a location in a coordinate reference system).
 
-Raster data is highly effective for modeling and visualizing continuous spatial phenomena such as elevation, temperature, and precipitation.
-Each cell in the grid captures a value representing the attribute at that specific location, allowing for smooth and detailed gradients across the study area.
-This format is also effective in representing categorical variables such as land cover, where each cell is associated with a class value.
+Raster data is highly effective for modeling and visualizing continuous spatial phenomena such as elevation, temperature, and precipitation. Each cell in the grid captures a value representing the attribute at that specific location, allowing for smooth and detailed gradients across the study area. This format is also effective in representing categorical variables such as land cover, where each cell is associated with a class value.
 
 Common **raster formats** used for spatial analyses include:
 
@@ -183,20 +167,14 @@ These formats vary in terms of compression, metadata support, and suitability fo
 
 ### Terra package and raster dataset
 
-The package **terra** provides a variety of specialized classes and functions for importing, processing, analyzing, and visualizing raster datasets [@Hijmans_2024].
-It is intended to replace the package "raster", which has similar data objects and the function syntax as terra package.
-However, the terra package contains several major improvements, including faster processing speed for large raster.
+The package **terra** provides a variety of specialized classes and functions for importing, processing, analyzing, and visualizing raster datasets [@Hijmans_2024]. It is intended to replace the package "raster", which has similar data objects and the function syntax as terra package. However, the terra package contains several major improvements, including faster processing speed for large raster.
 
 ### Plot raster features
 
-Raster objects can be imported using the function ***rast()*** and exported using **writeRaster()**, specifying the format argument.
-
-As a toy example, we will work with the raster \*.tif representing the digital elevation model (DEM) of Canton Vaud.
-
-Similar to the sf package for plotting vector data, terra also provides `plot()` methods for its own classes.
+Raster objects can be imported using the function `rast()` and exported using `writeRaster()`, specifying the format argument. As a toy example, we will work with the raster \*.tif representing the digital elevation model (DEM) of Canton Vaud. Similar to the sf package for plotting vector data, terra also provides `plot()` methods for its own classes.
 
 
-```r
+``` r
 # Load the library terra 
 library(terra)
 
@@ -219,42 +197,37 @@ DEM_VD
 ## max value   : 3193.2
 ```
 
-```r
+``` r
 # Plot raster dataset
 plot(DEM_VD, main="DEM")
 ```
 
-<img src="02-RGIS_files/figure-html/plot-raster-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/plot-raster-1} \end{center}
 
 ## Geodata manipulation
 
-In this section, we explore some basic manipulations with vector and raster geodata.
-This will be useful in the following chapters of this book.
+In this section, we explore some basic manipulations with vector and raster geodata. This will be useful in the following chapters of this book.
 
 ### Manipulate tabular datasets
 
-In a vector dataset, the characteristics associated with geospatial features are stored in the attribute table.
-Each feature in the vector dataset is linked to a row in the table, with its characteristics organized into columns.
-Columns, also known as fields, store the various attributes associated with the features.
+In a vector dataset, the characteristics associated with geospatial features are stored in the attribute table. Each feature in the vector dataset is linked to a row in the table, with its characteristics organized into columns. Columns, also known as fields, store the various attributes associated with the features.
 
 Thematic attributes stored in separate tabular dataset (such as census data, environmental monitoring stations, public health, or traffic data) can be imported and added to the attribute table of a given vector datased if the two dataset are referred to the same spatial features.
 
-While tabular dataset can be delivered in different format (such as \*.dbf, \*.xlsx, \*.txt), the most widely used format is \***.csv** (comma-separated values).
-As for other tabular format, \*.csv is structured into rows and columns, where each column is separated by a comma.
-The first row often contains the column headers (field names), which describes the attribute in each column.
-The main advantages on this format compared with other formats are:
+While tabular dataset can be delivered in different format (such as \*.dbf, \*.xlsx, \*.txt), the most widely used format is \***.csv** (comma-separated values). As for other tabular format, \*.csv is structured into rows and columns, where each column is separated by a comma. The first row often contains the column headers (field names), which describes the attribute in each column. The main advantages of this format compared with other formats are:
 
 -   *Simplicity*: easy to create, read, and edit.
 -   *Lightweight*: files are typically small and easy to transfer.
 -   *Compatibility*: supported by most data processing tools and software.
 
-In most cases, data need to be reworked before beeing visualized and analyzed in R.
-Common tasks include: selecting subsets of rows or columns from the attribute table; rename a field; calculate new variables from the raw data values; compute summary statistics; combine data from different sources.
-To this end, the package **dplyr** [@Wickham_et_al_2003] provides consistent set of functions that help you solve the most common data manipulation challenges.
-We explore some of them in the following chunks.
+In most cases, data need to be reworked before beeing visualized and analyzed in R. Common tasks include: selecting subsets of rows or columns from the attribute table, rename a field, calculate new variables from the raw data values, compute summary statistics, combine data from different sources. To this end, the package **dplyr** [@Wickham_et_al_2003] provides consistent set of functions that help you to solve the most common data manipulation challenges. We explore some of them in the following code chunks.
+
+As a toy example, we will work with the the Swioss population census dataset 2020.
 
 
-```r
+``` r
 # Load ths library dply
 library(dplyr)
 
@@ -305,7 +278,7 @@ str(Swisscensus_2020)
 ```
 
 
-```r
+``` r
 # Create a subset including only Land Use information
 Swisscensus2020_LU = subset(Swisscensus_2020, select = c(2:6))
 
@@ -322,7 +295,7 @@ str(Swisscensus2020_LU)
 ```
 
 
-```r
+``` r
 # Rename a column for better understanding
 CH2020_LU <- rename(Swisscensus2020_LU, Urban=p_infrastructure)
 head(CH2020_LU)
@@ -342,14 +315,12 @@ head(CH2020_LU)
 
 Pipes allow for the chaining of multiple operations in a unique sequence, which makes the code easier to understand and reduces the need for nested function calls.
 
-The use of pipes in R, primarily facilitated by the **magrittr** package and now natively supported in base R (R version 4.1.0 and above), is a powerful way to write clear and readable code.
-The function pipe is represented by the symbol `%>%`.
-When a pipe is placed on the right side of an object or function, the output from the function is passed as the first argument to the next function after the pipe.
+The use of pipes in R, primarily facilitated by the **magrittr** package and now natively supported in base R (R version 4.1.0 and above), is a powerful way to write clear and readable code. The function pipe is represented by the symbol `%>%`. When a pipe is placed on the right side of an object or function, the output from the function is passed as the first argument to the next function after the pipe.
 
 Below is a simple example of using the pipe operator with the function `select()`, used to select the the fields related to the land use in the Swiss census dataset corresponding to a population density less than 100.
 
 
-```r
+``` r
 LU_dens100 <- 
   Swisscensus_2020 %>%
   filter(density < 100) %>%
@@ -369,11 +340,10 @@ str(LU_dens100)
 
 ### Join table
 
-A tabular dataset can be joined to the attribute table of a vector dataset by specifying the name of the columns in the two tables used for merging.
-To this end, we can use the function `merge()` included in the package sp .
+A tabular dataset can be joined to the attribute table of a vector dataset by specifying the name of the columns in the two tables used for merging. To this end, we can use the function `merge()` included in the package sp .
 
 
-```r
+``` r
 Vaud_census_2020 <- merge(x=vaud, y=Swisscensus_2020,
                              by.x="Code", 
                              by.y="ID",
@@ -383,20 +353,18 @@ Vaud_census_2020 <- merge(x=vaud, y=Swisscensus_2020,
 plot(Vaud_census_2020["p_agriculture"])
 ```
 
-<img src="02-RGIS_files/figure-html/merge-tab-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/merge-tab-1} \end{center}
 
 ### Mapping with ggplot2
 
-Mapping in R can be efficiently achieved using the powerful visualization package **ggplot2**, especially when combined with additional packages like sf.
-These tools togheter enable users to create detailed and customized maps for spatial data analysis and visualization.
-In particular sf facilitates the handling of complex spatial data structures, making it possible to create intricate and informative maps.
+Mapping in R can be efficiently achieved using the powerful visualization package **ggplot2**, especially when combined with additional packages like sf. These tools togheter enable users to create detailed and customized maps for spatial data analysis and visualization. In particular sf facilitates the handling of complex spatial data structures, making it possible to create intricate and informative maps.
 
-In the following example we crate an aesthetic map of Canton Vaud based on the percentage of agricultural land use by municipality.
-Aesthetic mappings describe how the attributes of the geodata are mapped to the visual properties (aesthetics) of the plot.
-The command aesthetics – `aes()` – control the appearance of the plot elements, such as points, lines, bars, and so on.
+In the following example we crate an aesthetic map of Canton Vaud based on the percentage of agricultural land use by municipality. Aesthetic mappings describe how the attributes of the geodata are mapped to the visual properties (aesthetics) of the plot. The command aesthetics – `aes()` – control the appearance of the plot elements, such as points, lines, bars, and so on.
 
 
-```r
+``` r
 # load the library gglpt2
 library (ggplot2)
 
@@ -408,10 +376,10 @@ install.packages("viridis", repos="http://cran.us.r-project.org")
 ## package 'viridis' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpacTBQu\downloaded_packages
+## 	C:\Users\mtonini1\AppData\Local\Temp\RtmpiyDQ83\downloaded_packages
 ```
 
-```r
+``` r
 library(viridis)
 
 # Use ggplot2 for mapping
@@ -423,21 +391,18 @@ ggplot(Vaud_census_2020) +
        subtitle = "Canton vaud - census 2020")
 ```
 
-<img src="02-RGIS_files/figure-html/mapping-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/mapping-1} \end{center}
 
 ### Cropping ratser
 
-Many projects in geosciences require integrating raster data covering an exension larger than the study area.
-In these scenarios, raster cropping and masking are essential for standardizing the spatial extent of the input data.
-These operations help to minimize memory usage and computational resources needed for subsequent analysis and are often a crucial pre-processing step before generating detailed and visually appealing maps that incorporate raster data.
+Many projects in geosciences require integrating raster data covering an exension larger than the study area. In these scenarios, raster cropping and masking are essential for standardizing the spatial extent of the input data. These operations help to minimize memory usage and computational resources needed for subsequent analysis, and often represnet a crucial pre-processing step before generating detailed and visually appealing maps incorporating raster data.
 
-The first check you need to perform when importing data from different sources is to verify whether the coordinate reference systems (CRS) of the input geodatasets are consistent.
-To this end, simply type the names of the geodatasets and check the "coord. ref." attribute.
-For a detailed description of the coordinate reference system, use the `crs()` function.
-If necessary, re-project one of the spatial layers using the `project()` function, specifying the CRS of the other dataset to ensure their extents perfectly overlap.
+The first check you need to perform when importing data from different sources is to verify whether the **coordinate reference systems (CRS)** of the input geodatasets are consistent. To this end, simply type the names of the geodatasets and check the "coord. ref." attribute. For a detailed description of the coordinate reference system, use the `crs()` function. If necessary, re-project one of the spatial layers using the `project()` function, specifying the CRS of the other dataset to ensure their extents perfectly overlap.
 
 
-```r
+``` r
 # Verify CRS
 DEM_VD
 ```
@@ -454,7 +419,7 @@ DEM_VD
 ## max value   : 3193.2
 ```
 
-```r
+``` r
 vaud
 ```
 
@@ -478,7 +443,7 @@ vaud
 ## 10   30004.81   19487486       Avenches 5451 POLYGON ((2570746 1194939, ...
 ```
 
-```r
+``` r
 # Project the DEM data using the CRS of the shapefile 
 demVD_prj = project(DEM_VD, crs(vaud))
 
@@ -486,16 +451,20 @@ demVD_prj = project(DEM_VD, crs(vaud))
 plot(DEM_VD)
 ```
 
-<img src="02-RGIS_files/figure-html/project-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/project-1} \end{center}
+
+``` r
 plot(demVD_prj)
 ```
 
-<img src="02-RGIS_files/figure-html/project-2.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/project-2} \end{center}
+
+
+``` r
 # Extract the municipality of Lausanne
 Lausanne <- filter(vaud, Munics == "Lausanne")
 
@@ -512,22 +481,20 @@ plot(DEM_Lausanne, main = "DEM of Lausanne")
 plot(st_geometry(Lausanne), add = TRUE, border = "red", lwd = 2)
 ```
 
-<img src="02-RGIS_files/figure-html/cropping-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/cropping-1} \end{center}
 
 ### Display the categorical variables of a raster
 
-Categorical variables, also known as qualitative variables, are variables that represent distinct groups or categories.
-These variables are typically non-numeric and can be divided into a finite number of categories or levels.
-Categorical variables are often used to represent characteristics or attributes that do not have a natural ordering.
+Categorical variables, also known as qualitative variables, are variables that represent distinct groups or categories. These variables are typically non-numeric and can be divided into a finite number of categories or levels. Categorical variables are often used to represent characteristics or attributes that do not have a natural ordering.
 
-Land use classes of a raster dataset are a common example of categorical variables.
-Each class represents a distinct type of land use labeled with names or, mostly, numeric codes.
+Land use classes of a raster dataset are a common example of categorical variables. Each class represents a distinct type of land use labeled with names or, mostly, numeric codes.
 
-To understand the characteristics of the categorical variables, you can plot the "Land Cover" raster dataset by using its original classes.
-To visualize the data you need to perform few data manipulations before.
+To understand the characteristics of the categorical variables, you can plot the "Land Cover" raster dataset by using its original classes. To visualize the data you need to perform few data manipulations before.
 
 
-```r
+``` r
 # Load the raster data
 landCover <- rast("data/RGIS/landCover.tif")
 
@@ -547,14 +514,16 @@ landCover
 ## max value   :        62
 ```
 
-```r
+``` r
 # Plot the raster (using codes)
 plot (landCover)
 ```
 
-<img src="02-RGIS_files/figure-html/landCover-map-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/landCover-map-1} \end{center}
+
+``` r
 # Convert the raster as a factor to represent categorical data
 landCover <- as.factor(rast("data/RGIS/landCover.tif"))
 
@@ -574,7 +543,7 @@ print(current_levels)
 ## 7 62        62
 ```
 
-```r
+``` r
 # Define a vector of new class names (descriptions)
 new_class_names <- c(
  "11" = "Impermeable man-made",
@@ -607,7 +576,7 @@ print(levels(landCover))
 ## 7 62 Glacier and water body
 ```
 
-```r
+``` r
 # Create a color palette with enough colors for all classes
 
 library(RColorBrewer)
@@ -619,12 +588,13 @@ color_palette <- colorRampPalette(brewer.pal(8, "Set3"))(num_classes)
 plot(landCover, col = color_palette, main = "Land Cover Classes")
 ```
 
-<img src="02-RGIS_files/figure-html/landCover-map-2.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-RGIS_files/figure-latex/landCover-map-2} \end{center}
 
 ## Further Reading
 
-This chapter aims to provide an overview of the main functionalities integrated into the R packages **sf** and **terra** for vector and raster data manipulation.
-For more in-depth knowledge and understanding, you can refer to the following documentation:
+This chapter aims to provide an overview of the main functionalities integrated into the R packages **sf** and **terra** for vector and raster data manipulation. For more in-depth knowledge and understanding, you can refer to the following documentation:
 
 -   `sf` [Simple Features for R](https://r-spatial.github.io/sf/index.html)
 
