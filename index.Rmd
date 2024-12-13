@@ -76,7 +76,7 @@ After a brief introduction to the main functionalities in R (see Chapter \@ref(i
 -   *Self-Organizing Maps*: as example of unsupervised machine learning method for data clustering/segmentation and visualization (Chapter \@ref(som)).
 -   *Feature detection*: using DBSCAN for identifying and visualizing clustering features (Chapter \@ref(dbscan)).
 
-To complete the applied computing labs presented in each chapter, readers can download the datasets from here: [dataset](data)
+To complete the applied computing labs presented in each chapter, readers can download the datasets from here: [dataset](https://github.com/marj73/AGDA_Rbook/tree/vmware/data)
 
 ### Target audience {.unnumbered}
 
